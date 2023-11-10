@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.login.mapper.LoginMapper">
+
+    <!-- 유저정보 insert -->
+    <insert id="insertUserInfo" parameterType="java.util.Map">
+        INSERT INTO VUE_USERINFO(
+                                    EMAIL
+                                  , PW
+                                  , INPDATE
+                                )
+                        VALUES(
+                                #{email}
+                              , #{password}
+                              , #{inpDate}
+                              )
+    </insert>
+
+    <select id="matchUserInfo" parameterType="HashMap" resultType="java.util.LinkedHashMap">
+        SELECT EMAIL
+             , PW
+          FROM VUE_USERINFO
+         WHERE EMAIL = #{email} 
+           AND PW = #{password}     
+    </select>
+
+
+</mapper>
