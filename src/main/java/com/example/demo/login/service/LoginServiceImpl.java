@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
     public String inputUserInfo(Map<String, Object> userInfo) {
         try {
             if (!userInfo.isEmpty()) {
-                // 회원가입시 중복email 방지하는 로직 만들것
+                // 회원가입시 중복email 방지하는 로직 만들것(미완성)
                 LoginMapper.insertUserInfo(userInfo);
             }
             return null;
@@ -40,10 +40,11 @@ public class LoginServiceImpl implements LoginService {
             System.out.println("결과값: " + result);
 
             if(result == null){
-                return "로그인 실패.\n아이디와 비밀번호를 확인하세요.";
+                return null;
             }
+            return (String) result.get("EMAIL");
         }
-        return "로그인 성공.";
+        return null;
     }
 
 
