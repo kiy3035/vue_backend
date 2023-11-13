@@ -15,6 +15,9 @@ import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,7 @@ public class LoginController {
     private LoginService LoginService;
 
     // 회원가입
-    @PostMapping("/singUp")
+    @PostMapping("/signup")
     public String singUp(@RequestBody Map<String, Object> data) {
 
         data.put("inpDate", new Date()); // SYSDATE 추가
@@ -41,18 +44,29 @@ public class LoginController {
 
     // 로그인
     @PostMapping("/login")
-    public String login(@RequestBody Map<String, Object> data) {
+    public String login(@RequestBody Map<String, Object> data, HttpSession session) {
 
         String result = LoginService.login(data);
-        
-        return result;
+        System.out.println("result ::::" + result);
+
+        if (result != null) {
+            return result;
+        }else{
+            return "로그인 실패";
+        }
     }
 
-    // @GetMapping("/signIn")
-    // public List<dtoClass> getTitles() {
-    //     List<dtoClass> titleList = LoginService.getTitles();
-    //     System.out.println("getTitles:" + titleList);
-    //     return titleList;
-    // }
+    // 로그인한 사용자의 이메일 가져오기
+    @GetMapping("/getuseremail")
+    public ResponseEntity<String> getUserEmail(HttpSession session) {
+
+        String userEmail = (String) session.getAttribute("email");
+
+        if (userEmail != null) {
+            return new ResponseEntity<>(userEmail, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+    }
     
 }
