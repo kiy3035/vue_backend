@@ -18,15 +18,17 @@ import com.example.demo.video.service.VideoService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8001")
+// @RequestMapping("/api")
 public class VideoController {
     
     @Autowired
     private VideoService videoService;
 
     @PostMapping("/api/upload")
-    public String uploadVideo(@ModelAttribute VideoDto videoDto, @RequestBody Map<String, Object> data, MultipartFile videoFile) {
+    public String uploadVideo(@ModelAttribute VideoDto videoDto, @RequestParam("videoFile") MultipartFile videoFile) {
         // 업로드된 비디오 파일과 DTO를 서비스에 전달
         videoDto.setVideoFile(videoFile);
+        videoService.uploadVideo(videoDto, videoFile);
         // videoService.uploadVideo(videoDto, videoFile);
         // videoService.uploadVideo(videoDto, videoFile); // MultipartFile을 인수로 전달
         return "fuck";
