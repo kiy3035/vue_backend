@@ -20,4 +20,7 @@ public class VideoDto {
 
     @Getter @Setter
     private MultipartFile videoFile;
+
+    public void setFilename(String videoNo) {
+    }
 }

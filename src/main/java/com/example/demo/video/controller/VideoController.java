@@ -20,8 +20,17 @@ public class VideoController {
 
     @PostMapping("/api/upload")
     public String uploadVideo(@ModelAttribute VideoDto videoDto, @RequestParam("videoFile") MultipartFile videoFile) {
+        // 파일 이름을 video_no로 설정
+        String originalFilename = videoFile.getOriginalFilename();
+        String extension = originalFilename.substring(originalFilename.lastIndexOf('.'));
+        String videoNo = System.currentTimeMillis() + extension;
         // 업로드된 비디오 파일과 DTO를 서비스에 전달
+        videoDto.setVideo_no(videoNo);
+        videoDto.setFilename(videoNo); // 파일 이름을 videoNo로 설정
+
         videoDto.setVideoFile(videoFile);
+
+        // 데이터베이스에 비디오 정보를 저장
         String result = videoService.uploadVideo(videoDto, videoFile); // 데이터베이스에 비디오 정보를 저장하도록 수정
         if ("success".equals(result)) {
             return "업로드 되었습니다.";
