@@ -4,17 +4,21 @@
 <mapper namespace="com.example.demo.video.mapper.VideoMapper">
 
     <!-- 영상 insert -->
-    <insert id="insertVideo" parameterType="java.util.Map">
+    <insert id="insertVideo" parameterType="com.example.demo.video.dto.VideoDto">
         INSERT INTO TEST_VUE(
-                                    TITLE
-                                  , PATH
-                                  , TYPE
-                                )
-                        VALUES(
-                                #{title}
-                              , #{path}
-                              , #{type}
-                              )
+                              TITLE
+                            , PATH
+                            , TYPE
+                            , VIDEO_NO
+                            , INP_DT
+                          )
+                  VALUES(
+                          #{title}
+                        , #{path}
+                        , #{type}
+                        , #{video_no}
+                        , #{inp_dt}
+        )
     </insert>
 
     <select id="searchVideo" parameterType="HashMap" resultType="java.util.LinkedHashMap">
