@@ -28,13 +28,24 @@ public class VideoServiceImpl implements VideoService {
     public String uploadVideo(VideoDto videoDto, MultipartFile videoFile) {
         try {
             if (videoFile != null && !videoFile.isEmpty()) {
-                String fileName = videoFile.getOriginalFilename();
+                String originalFilename = videoFile.getOriginalFilename();
+                String extension = originalFilename.substring(originalFilename.lastIndexOf('.'));
+                String videoNo = System.currentTimeMillis() + extension;
+
+                videoDto.setFilename(videoNo); // 파일 이름을 videoNo로 설정
+
+                // 프로젝트 내부의 상대 경로 설정
+                String projectPath = System.getProperty("user.dir");
+                String relativePath = "vue_front/src/uploads";
+                String uploadDirPath = projectPath + "/" + relativePath;
+
                 // 파일 저장 경로 설정
-                File uploadDir = new File(uploadDirectory);
+                File uploadDir = new File(uploadDirPath);
                 if (!uploadDir.exists()) {
                     uploadDir.mkdirs();
                 }
-                File uploadedFile = new File(uploadDirectory, fileName);
+
+                File uploadedFile = new File(uploadDir, videoNo);
                 videoFile.transferTo(uploadedFile);
 
                 // MyBatis를 사용하여 비디오 정보 저장
