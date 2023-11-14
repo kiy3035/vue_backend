@@ -10,12 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.video.Entity.Video;
-import com.example.demo.video.dto.VideoDto;
-import com.example.demo.video.mapper.VideoMapper;
+import com.example.demo.video.dto.VideoDto2;
+import com.example.demo.video.mapper.VideoMapper2;
 import com.example.demo.video.repository.VideoRepository;
 
 @Service
-public class VideoServiceImpl implements VideoService {
+public class VideoServiceImpl implements VideoService2 {
 
     @Autowired
     private VideoRepository videoRepository;
@@ -26,7 +26,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     @Transactional
-    public void uploadVideo(VideoDto videoDto, MultipartFile videoFile) {
+    public void uploadVideo(VideoDto2 videoDto, MultipartFile videoFile) {
         if (videoFile != null && !videoFile.isEmpty()) {
             try {
                 String fileName = videoFile.getOriginalFilename();
@@ -39,7 +39,7 @@ public class VideoServiceImpl implements VideoService {
                 videoFile.transferTo(uploadedFile);
 
                 // 엔티티로 변환 및 저장
-                Video video = VideoMapper.INSTANCE.videoDtoToVideo(videoDto);
+                Video video = VideoMapper2.INSTANCE.videoDtoToVideo(videoDto);
                 video.setFilePath(uploadedFile.getAbsolutePath());
                 videoRepository.save(video);
             } catch (IOException e) {
