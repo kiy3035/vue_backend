@@ -1,34 +1,33 @@
 package com.example.demo.video.service;
 
-import java.io.File;
-import java.io.IOException;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import com.example.demo.video.dto.VideoDto;
+import com.example.demo.video.mapper.VideoMapper;
 
-import com.example.demo.video.Entity.Video;
-import com.example.demo.video.dto.VideoDto2;
-import com.example.demo.video.mapper.VideoMapper2;
-import com.example.demo.video.repository.VideoRepository;
+import java.io.File;
+import java.io.IOException;
+
+import javax.annotation.Resource;
 
 @Service
-public class VideoServiceImpl implements VideoService2 {
+@PropertySource("classpath:application.properties")
+public class VideoServiceImpl implements VideoService {
 
-    @Autowired
-    private VideoRepository videoRepository;
-    // @Autowired
-    // private VideoMapper videoMapper;
     @Value("${file.upload.directory}")
     private String uploadDirectory;
 
+    @Resource
+    private VideoMapper videoMapper;
+
     @Override
     @Transactional
-    public void uploadVideo(VideoDto2 videoDto, MultipartFile videoFile) {
-        if (videoFile != null && !videoFile.isEmpty()) {
-            try {
+    public String uploadVideo(VideoDto videoDto, MultipartFile videoFile) {
+        try {
+            if (videoFile != null && !videoFile.isEmpty()) {
                 String fileName = videoFile.getOriginalFilename();
                 // 파일 저장 경로 설정
                 File uploadDir = new File(uploadDirectory);
@@ -38,14 +37,17 @@ public class VideoServiceImpl implements VideoService2 {
                 File uploadedFile = new File(uploadDirectory, fileName);
                 videoFile.transferTo(uploadedFile);
 
-                // 엔티티로 변환 및 저장
-                Video video = VideoMapper2.INSTANCE.videoDtoToVideo(videoDto);
-                video.setFilePath(uploadedFile.getAbsolutePath());
-                videoRepository.save(video);
-            } catch (IOException e) {
-                // 파일 업로드 또는 저장 중 오류 발생 시 처리
-                e.printStackTrace();
+                // MyBatis를 사용하여 비디오 정보 저장
+                videoDto.setPath(uploadedFile.getAbsolutePath());
+                videoMapper.insertVideo(videoDto);
+
+                return "success";
+            } else {
+                return "No file uploaded.";
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error during file upload or data save.";
         }
     }
 }
