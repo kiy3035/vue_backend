@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mypage.mapper.MypageMapper">
+
+    <!-- 유저정보 update -->
+    <update id="updateUserInfo" parameterType="java.util.Map">
+        UPDATE VUE_USERINFO
+           SET PW = #{password}
+             , INPDATE = #{updDate}
+         WHERE EMAIL = #{email}
+    </update>
+
+    <!-- <select id="matchUserInfo" parameterType="HashMap" resultType="java.util.LinkedHashMap">
+        SELECT EMAIL
+             , PW
+          FROM VUE_USERINFO
+         WHERE EMAIL = #{email} 
+           AND PW = #{password}     
+    </select> -->
+
+
+</mapper>
