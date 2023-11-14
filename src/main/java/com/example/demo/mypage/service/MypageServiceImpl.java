@@ -19,8 +19,6 @@ public class MypageServiceImpl implements MypageService {
     }
 
     public void updateUserInfo(Map<String, Object> userInfo) {
-        System.out.println("userInfoㅇㅇㅇㅇㅇㅇ" + userInfo);
-
         try {
             if (!userInfo.isEmpty()) {
                 MypageMapper.updateUserInfo(userInfo);

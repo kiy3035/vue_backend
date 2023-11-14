@@ -34,7 +34,7 @@ public class MypageController {
     // 비밀번호 변경
     @PostMapping("/updateUserInfo")
     public void singUp(@RequestBody Map<String, Object> data) {
-System.out.println("데타:" + data);
+        
         data.put("updDate", new Date()); // SYSDATE 추가
 
         MypageService.updateUserInfo(data);
