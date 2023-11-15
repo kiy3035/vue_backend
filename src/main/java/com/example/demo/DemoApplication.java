@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8001")
 @MapperScan(basePackages = {"com.example.demo.video.mapper", "com.example.demo.login.mapper", "com.example.demo.mypage.mapper"}) // Mapper 인터페이스가 위치한 패키지를 정확하게 지정
 public class DemoApplication {
 
