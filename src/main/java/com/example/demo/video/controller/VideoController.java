@@ -1,14 +1,22 @@
 package com.example.demo.video.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.video.dto.VideoDto;
@@ -24,6 +32,7 @@ public class VideoController {
 
     @PostMapping("/api/upload")
     public String uploadVideo(@ModelAttribute VideoDto videoDto, @RequestParam("videoFile") MultipartFile videoFile) {
+
         // 파일 이름을 video_no로 설정
         String originalFilename = videoFile.getOriginalFilename();
         String extension = originalFilename.substring(originalFilename.lastIndexOf('.'));
@@ -48,4 +57,7 @@ public class VideoController {
     public List<VideoDto> loadVideos() {
         return videoService.getAllVideos();
     }
+
+
+
 }

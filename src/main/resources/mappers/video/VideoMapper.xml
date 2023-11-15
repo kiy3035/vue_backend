@@ -5,7 +5,7 @@
 
     <!-- 영상 insert -->
     <insert id="insertVideo" parameterType="com.example.demo.video.dto.VideoDto">
-        INSERT INTO TEST_VUE(
+        INSERT INTO VUE_VIDEO(
                               TITLE
                             , PATH
                             , TYPE
@@ -25,7 +25,7 @@
         SELECT TITLE
              , PATH
              , TYPE
-          FROM TEST_VUE
+          FROM VUE_VIDEO
          WHERE TITLE = #{title} 
            AND TYPE = #{type}     
     </select>
