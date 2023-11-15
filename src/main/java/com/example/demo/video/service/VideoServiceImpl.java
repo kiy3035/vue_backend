@@ -1,17 +1,19 @@
 package com.example.demo.video.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+
 import com.example.demo.video.dto.VideoDto;
 import com.example.demo.video.mapper.VideoMapper;
-
-import java.io.File;
-import java.io.IOException;
-
-import javax.annotation.Resource;
 
 @Service
 @PropertySource("classpath:application.properties")
@@ -30,13 +32,14 @@ public class VideoServiceImpl implements VideoService {
             if (videoFile != null && !videoFile.isEmpty()) {
                 String originalFilename = videoFile.getOriginalFilename();
                 String extension = originalFilename.substring(originalFilename.lastIndexOf('.'));
-                String videoNo = System.currentTimeMillis() + extension;
+                String videoNo = videoDto.getVideo_no();
 
-                videoDto.setFilename(videoNo); // 파일 이름을 videoNo로 설정
+                videoDto.setFilename(videoNo+extension); // 파일 이름을 videoNo로 설정
 
                 // 프로젝트 내부의 상대 경로 설정
                 String projectPath = System.getProperty("user.dir");
-                String relativePath = "vue_front/src/uploads";
+                String relativePath = "vue_front/public";
+                // String relativePath = "vue_backend/src/main/resources/static/uploads";
                 String uploadDirPath = projectPath + "/" + relativePath;
 
                 // 파일 저장 경로 설정
@@ -60,5 +63,9 @@ public class VideoServiceImpl implements VideoService {
             e.printStackTrace();
             return "Error during file upload or data save.";
         }
+    }
+    @Override
+    public List<VideoDto> getAllVideos() {
+        return videoMapper.getAllVideos();
     }
 }
