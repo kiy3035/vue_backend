@@ -8,18 +8,24 @@
         INSERT INTO VUE_USERINFO(
                                     EMAIL
                                   , PW
+                                  , NICKNAME
                                   , INPDATE
+                                  , INP_USR
                                 )
                         VALUES(
                                 #{email}
                               , #{password}
+                              , #{nickname}
                               , #{inpDate}
+                              , #{inp_usr}
                               )
     </insert>
 
     <select id="matchUserInfo" parameterType="HashMap" resultType="java.util.LinkedHashMap">
         SELECT EMAIL
              , PW
+             , INP_USR
+             , NICKNAME
           FROM VUE_USERINFO
          WHERE EMAIL = #{email} 
            AND PW = #{password}     
