@@ -9,12 +9,25 @@ public class VideoDto {
 
     @Getter @Setter
     private String title;
+
+    @Getter @Setter
+    private String content;
+
+    @Getter @Setter
+    private String user_name;
+
+    @Getter @Setter
+    private String user_nickname;
+
     @Getter @Setter
     private String path;
+
     @Getter @Setter
     private String type;
+
     @Getter @Setter
     private String video_no;
+
     @Getter @Setter
     private String inp_dt;
 

@@ -7,6 +7,7 @@
     <insert id="insertVideo" parameterType="com.example.demo.video.dto.VideoDto">
         INSERT INTO VUE_VIDEO(
                               TITLE
+                            , CONTENT
                             , PATH
                             , TYPE
                             , VIDEO_NO
@@ -14,6 +15,7 @@
                           )
                   VALUES(
                           #{title}
+                        , #{content}
                         , #{path}
                         , #{type}
                         , #{video_no}
