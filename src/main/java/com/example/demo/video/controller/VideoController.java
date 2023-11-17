@@ -33,8 +33,9 @@ public class VideoController {
     private VideoService videoService;
 
     @PostMapping("/api/upload")
-    public String uploadVideo(@RequestPart("videoFile") MultipartFile videoFile, VideoDto videoDto, @RequestParam("videoTitle") String title,
-                                                                    @RequestParam("videoContent") String content) {
+    public String uploadVideo(@RequestPart("videoFile") MultipartFile videoFile, VideoDto videoDto,
+                                @RequestParam("videoTitle") String title, @RequestParam("videoContent") String content) {
+                                    
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.println(title);
         System.out.println(content);
