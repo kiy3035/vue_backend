@@ -25,8 +25,11 @@
 
     <select id="searchVideo" parameterType="HashMap" resultType="java.util.LinkedHashMap">
         SELECT TITLE
+             , CONTENT
+             , USER_NICKNAME
              , PATH
              , TYPE
+             , INP_DT
           FROM VUE_VIDEO
          WHERE TITLE = #{title} 
            AND TYPE = #{type}     
