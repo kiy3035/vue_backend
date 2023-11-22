@@ -10,7 +10,7 @@
                             , CONTENT
                             , PATH
                             , TYPE
-                            , VIDEO_NO
+                            , VIDEO_ID
                             , INP_DT
                           )
                   VALUES(
@@ -18,7 +18,7 @@
                         , #{content}
                         , #{path}
                         , #{type}
-                        , #{video_no}
+                        , #{video_id}
                         , #{inp_dt}
         )
     </insert>
@@ -30,6 +30,8 @@
              , PATH
              , TYPE
              , INP_DT
+             , LIKE_COUNT
+             , COMMENT_COUNT
           FROM VUE_VIDEO
          WHERE TITLE = #{title} 
            AND TYPE = #{type}     

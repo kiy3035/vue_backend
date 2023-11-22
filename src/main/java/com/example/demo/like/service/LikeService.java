@@ -1,12 +1,9 @@
-// package com.example.demo.like.service;
+package com.example.demo.like.service;
 
-// import java.util.List;
-// import java.util.Map;
+import java.util.List;
+import java.util.Map;
 
-// import com.example.demo.like.dto.LikeDto;
-
-// public interface LikeService {
-//     void updateUserInfo(Map<String, Object> userInfo);
-//     // String login(Map<String, Object> userInfo);
-
-// }
+public interface LikeService {
+    int updateLike(Map<String, Object> upLike);
+    List<Map<String, Object>> getLikedVideoList(Map<String, Object> data);
+}

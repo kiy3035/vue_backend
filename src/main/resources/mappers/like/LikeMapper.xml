@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.like.mapper.LikeMapper">
+
+    <!-- Like +1 -->
+    <update id="upLike" parameterType="java.util.Map">
+        UPDATE VUE_VIDEO 
+           SET LIKE_COUNT = LIKE_COUNT + 1
+         WHERE VIDEO_ID = #{videoId}
+    </update>
+
+
+    <!-- LIKE 테이블에도 insert -->
+    <insert id="insertLike_YN" parameterType="java.util.Map">
+        INSERT INTO VUE_VIDEO_LIKE (
+                                      VIDEO_ID
+                                    , VIDEO_TITLE
+                                    , INP_USER
+                                    , INP_DATE
+                          ) VALUES (
+                                      #{videoId}
+                                    , #{videoTitle}
+                                    , #{userEmail}
+                                    , SYSDATE
+                          )
+             
+       
+    </insert>
+
+
+    <!-- Like Count -->
+    <select id="getLikeCount" parameterType="HashMap" resultType="java.lang.Integer">
+        SELECT LIKE_COUNT
+          FROM VUE_VIDEO
+         WHERE VIDEO_ID = #{videoId} 
+    </select>
+
+
+    <!-- 중복 Like 찾기 -->
+    <select id="getDupLike" parameterType="HashMap" resultType="java.util.LinkedHashMap">
+        SELECT VIDEO_ID
+          FROM VUE_VIDEO_LIKE
+         WHERE INP_USER = #{userEmail}
+    </select>
+
+</mapper>
