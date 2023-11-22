@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @MapperScan(basePackages = { "com.example.demo.video.mapper"
                            , "com.example.demo.login.mapper"
                            , "com.example.demo.mypage.mapper"
-                        //    , "com.example.demo.like.mapper" 
+                           , "com.example.demo.like.mapper" 
                         }) // Mapper 인터페이스가 위치한 패키지를 정확하게 지정
 public class DemoApplication {
 

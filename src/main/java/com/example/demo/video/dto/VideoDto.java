@@ -26,14 +26,20 @@ public class VideoDto {
     private String type;
 
     @Getter @Setter
-    private String video_no;
+    private String video_id;
 
     @Getter @Setter
     private String inp_dt;
 
     @Getter @Setter
+    private int like_count;
+
+    @Getter @Setter
+    private int comment_count;
+
+    @Getter @Setter
     private MultipartFile videoFile;
 
-    public void setFilename(String videoNo) {
+    public void setFilename(String videoId) {
     }
 }

@@ -40,14 +40,14 @@ public class VideoController {
         System.out.println(title);
         System.out.println(content);
 
-        // 파일 이름을 video_no로 설정
+        // 파일 이름을 video_id로 설정
         String originalFilename = videoFile.getOriginalFilename();
         String extension = originalFilename.substring(originalFilename.lastIndexOf('.'));
-        String videoNo = System.currentTimeMillis() + extension;
+        String videoId = System.currentTimeMillis() + extension;
 
         // 업로드된 비디오 파일과 DTO를 서비스에 전달
-        videoDto.setVideo_no(videoNo);
-        videoDto.setFilename(videoNo); // 파일 이름을 videoNo로 설정
+        videoDto.setVideo_id(videoId);
+        videoDto.setFilename(videoId); // 파일 이름을 videoId로 설정
         videoDto.setVideoFile(videoFile);
         videoDto.setTitle(title);
         videoDto.setContent(content);
