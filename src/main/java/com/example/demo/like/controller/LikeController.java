@@ -1,19 +1,34 @@
 package com.example.demo.like.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+// import com.example.demo.like.dto.LikeDto;
+import com.example.demo.like.service.*;
+import java.util.Date;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @RestController
-// @RequestMapping("/api")
+@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:8001", methods = { RequestMethod.POST })
 public class LikeController {
 
