@@ -28,18 +28,8 @@ public class CommentServiceImpl implements CommentService {
         }
     }
 
-    public List<Map<String, Object>> getAllComments(Map<String, Object> data) {
-        try {
-            System.out.println("########" + data);
-            if (!data.isEmpty()) {
-                return commentMapper.searchAllComments(data);
-            }
-        } 
-        catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-        return null;
+    public List<Map<String, Object>> getAllComments() {
+        return commentMapper.searchAllComments();
     }
 
 }

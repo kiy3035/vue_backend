@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CommentMapper {
 
     void insertComment(Map<String, Object> data);
-    List<Map<String, Object>> searchAllComments(Map<String, Object> data);
+    List<Map<String, Object>> searchAllComments();
 }

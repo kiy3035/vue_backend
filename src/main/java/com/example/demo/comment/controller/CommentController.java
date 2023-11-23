@@ -31,11 +31,9 @@ public class CommentController {
     }
 
     @GetMapping("/getAllComments")
-    public List<Map<String, Object>> getAllComments(@RequestBody Map<String, Object> data) {
+    public List<Map<String, Object>> getAllComments() {
 
-        System.out.println("댓글다가져오기맨:" + data);
-
-        return commentService.getAllComments(data);
+        return commentService.getAllComments();
     }
 
 }

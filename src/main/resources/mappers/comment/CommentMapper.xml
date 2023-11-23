@@ -22,9 +22,10 @@
 
 
     <!-- 댓글 목록 다 불러오기 -->
-    <select id="searchAllComments" parameterType="HashMap" resultType="java.util.LinkedHashMap">
+    <select id="searchAllComments" resultType="java.util.LinkedHashMap">
         SELECT *
           FROM VUE_VIDEO_COMMENT
+      ORDER BY INP_DATE
     </select>
 
 </mapper>
