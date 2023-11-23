@@ -15,7 +15,6 @@ import com.example.demo.like.service.LikeService;
 
 
 @RestController
-// @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:8001", methods = { RequestMethod.POST })
 public class LikeController {
 
@@ -34,7 +33,6 @@ public class LikeController {
     
     @PostMapping("/getLikedVideoList")
     public List<Map<String, Object>> getLikedList(@RequestBody Map<String, Object> data) {
-        System.out.println("!!!!!!!!!!!" + data);
         return likeService.getLikedVideoList(data);
     }
 
