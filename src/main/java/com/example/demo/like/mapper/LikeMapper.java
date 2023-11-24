@@ -8,8 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface LikeMapper {
 
-    void upLike(Map<String, Object> data);
-    void downLike(Map<String, Object> data);
+    void likePlus1(Map<String, Object> data);
+    void likeMinus1(Map<String, Object> data);
     void insertLike(Map<String, Object> data);
     int getLikeCount(Map<String, Object> data);
     List<Map<String, Object>> getDupLike(Map<String, Object> data);

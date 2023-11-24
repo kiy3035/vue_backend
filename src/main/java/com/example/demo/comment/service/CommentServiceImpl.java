@@ -21,6 +21,7 @@ public class CommentServiceImpl implements CommentService {
             System.out.println("@@@@@@@@@@@@@@@@@@@@" + data);
             if (!data.isEmpty()) {
                 commentMapper.insertComment(data);
+                commentMapper.commentCountPlus1(data);
             }
         } 
         catch (Exception e) {
@@ -28,8 +29,17 @@ public class CommentServiceImpl implements CommentService {
         }
     }
 
-    public List<Map<String, Object>> getAllComments() {
-        return commentMapper.searchAllComments();
+    public List<Map<String, Object>> getAllComments(Map<String, Object> data) {
+        return commentMapper.searchAllComments(data);
+    }
+
+    public int getCommentCount(Map<String, Object> data) {
+        return commentMapper.getCommentCount(data);
+    }
+
+    public void delComment(Map<String, Object> data) {
+        commentMapper.commentCountMinus1(data);
+        commentMapper.deleteComment(data);
     }
 
 }

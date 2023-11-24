@@ -25,7 +25,42 @@
     <select id="searchAllComments" resultType="java.util.LinkedHashMap">
         SELECT *
           FROM VUE_VIDEO_COMMENT
+         WHERE VIDEO_ID = #{videoId}   
       ORDER BY INP_DATE
     </select>
+
+
+    <!-- 댓글수 +1 -->
+    <update id="commentCountPlus1" parameterType="java.util.Map">
+        UPDATE VUE_VIDEO 
+           SET COMMENT_COUNT = COMMENT_COUNT + 1
+         WHERE VIDEO_ID = #{videoId}
+    </update>
+
+
+    <!-- 댓글수 -1 -->
+    <update id="commentCountMinus1" parameterType="java.util.Map">
+        UPDATE VUE_VIDEO 
+           SET COMMENT_COUNT = COMMENT_COUNT - 1
+         WHERE VIDEO_ID = #{videoId}
+    </update>
+
+
+    <!-- 댓글 개수 가져오기 -->
+    <select id="getCommentCount" parameterType="HashMap" resultType="java.lang.Integer">
+        SELECT COMMENT_COUNT
+          FROM VUE_VIDEO
+         WHERE VIDEO_ID = #{videoId}   
+    </select>
+
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment" parameterType="java.util.Map">
+        DELETE
+          FROM VUE_VIDEO_COMMENT
+         WHERE VIDEO_ID = #{videoId}
+           AND VIDEO_COMMENT = #{videoComment}
+           AND INP_USER = #{userEmail}
+    </delete>
 
 </mapper>

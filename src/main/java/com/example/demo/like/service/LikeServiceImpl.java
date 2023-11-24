@@ -21,13 +21,13 @@ public class LikeServiceImpl implements LikeService {
             if (!data.isEmpty()) {
                 if(likeMapper.getDupLike2(data).size() > 0){
                     if(likeMapper.getDupLike2(data).get(0).get("VIDEO_ID").equals(data.get("videoId"))){
-                        likeMapper.downLike(data);
+                        likeMapper.likeMinus1(data);
                         likeMapper.deleteLike(data);
                         return likeMapper.getLikeCount(data);
                     }
                 }
                 else{
-                    likeMapper.upLike(data);
+                    likeMapper.likePlus1(data);
                     likeMapper.insertLike(data);
                     return likeMapper.getLikeCount(data);
                 }
