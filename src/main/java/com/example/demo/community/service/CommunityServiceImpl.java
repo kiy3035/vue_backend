@@ -1,9 +1,11 @@
 package com.example.demo.community.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.community.dto.CommunityDto;
 import com.example.demo.community.mapper.CommunityMapper;
 
 @Service
@@ -22,7 +24,11 @@ public class CommunityServiceImpl implements CommunityService {
         } 
         catch (Exception e) {
             e.printStackTrace();
-            return "회원가입 오류발생";
+            return "오류발생!!";
         }
+    }
+    @Override
+    public List<CommunityDto> getAlldata() {
+        return CommunityMapper.getAlldata();
     }
 }
