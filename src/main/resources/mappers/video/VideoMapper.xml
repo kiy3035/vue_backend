@@ -12,6 +12,8 @@
                             , TYPE
                             , VIDEO_ID
                             , INP_DT
+                            , LIKE_COUNT
+                            , COMMENT_COUNT
                           )
                   VALUES(
                           #{title}
@@ -20,6 +22,8 @@
                         , #{type}
                         , #{video_id}
                         , #{inp_dt}
+                        , 0
+                        , 0
         )
     </insert>
 

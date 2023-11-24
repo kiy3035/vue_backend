@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.comment.service.CommentService;
@@ -20,6 +21,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
+    // 댓글 입력
     @PostMapping("/inputComment")
     public String inputComment(@RequestBody Map<String, Object> data) {
 
@@ -30,10 +32,26 @@ public class CommentController {
         return "OK";
     }
 
+    // 댓글목록 가져오기
     @GetMapping("/getAllComments")
-    public List<Map<String, Object>> getAllComments() {
-
-        return commentService.getAllComments();
+    public List<Map<String, Object>> getAllComments(@RequestParam Map<String, Object> data) {
+        return commentService.getAllComments(data);
     }
 
+    // 댓글수 가져오기
+    @GetMapping("/getCommentCount")
+    public int getCommentCount(@RequestParam Map<String, Object> data) {
+        return commentService.getCommentCount(data);
+    }
+
+    // 댓글 삭제
+    @PostMapping("/deleteComment")
+    public String deleteComment(@RequestBody Map<String, Object> data) {
+
+        System.out.println("댓글맨:" + data);
+
+        commentService.delComment(data);
+        
+        return "OK";
+    }
 }

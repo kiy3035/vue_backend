@@ -4,7 +4,7 @@
 <mapper namespace="com.example.demo.like.mapper.LikeMapper">
 
     <!-- Like +1 -->
-    <update id="upLike" parameterType="java.util.Map">
+    <update id="likePlus1" parameterType="java.util.Map">
         UPDATE VUE_VIDEO 
            SET LIKE_COUNT = LIKE_COUNT + 1
          WHERE VIDEO_ID = #{videoId}
@@ -12,7 +12,7 @@
 
 
     <!-- Like -1 -->
-    <update id="downLike" parameterType="java.util.Map">
+    <update id="likeMinus1" parameterType="java.util.Map">
         UPDATE VUE_VIDEO 
            SET LIKE_COUNT = LIKE_COUNT - 1
          WHERE VIDEO_ID = #{videoId}
