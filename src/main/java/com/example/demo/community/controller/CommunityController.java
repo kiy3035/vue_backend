@@ -1,15 +1,19 @@
 package com.example.demo.community.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.community.service.CommunityService;
+import com.example.demo.community.dto.CommunityDto;
 
 
 @RestController
@@ -30,6 +34,11 @@ public class CommunityController {
         return result;
     }
 
+    @GetMapping("/communitySearch")
+    @ResponseBody
+    public List<CommunityDto> searchData() {
+        return CommunityService.getAlldata();
+    }
     // 로그인한 사용자의 이메일 가져오기
     // @GetMapping("/getuseremail")
     // public ResponseEntity<String> getUserEmail(HttpSession session) {

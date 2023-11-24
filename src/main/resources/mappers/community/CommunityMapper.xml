@@ -7,13 +7,14 @@
     <insert id="insertUserInfo" parameterType="java.util.Map">
         INSERT INTO VUE_COMMUNITY(
                                     TITLE
-                                  , CONTENT
-                                  , HASH_TAG1
-                                  , HASH_TAG2
-                                  , HASH_TAG3
+                                  , CONT
+                                  , TAG1
+                                  , TAG2
+                                  , TAG3
                                   , INP_DT
                                   , NICKNAME
                                   , EMAIL
+                                  , LIKE_COUNT
                                 )
                         VALUES(
                                     #{title}
@@ -24,6 +25,7 @@
                                   , #{inp_dt}
                                   , #{nickname}
                                   , 'as17269@web2gether.co.kr'
+                                  , 0
                               )
     </insert>
 
