@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
                            , "com.example.demo.like.mapper" 
                            , "com.example.demo.comment.mapper" 
                            , "com.example.demo.community.mapper"
+                           , "com.example.demo.realgrid.mapper"
                         }) // Mapper 인터페이스가 위치한 패키지를 정확하게 지정
 public class DemoApplication {
 
