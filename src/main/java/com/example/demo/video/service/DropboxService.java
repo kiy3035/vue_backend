@@ -22,7 +22,7 @@ public class DropboxService {
     private VideoMapper videoMapper;
 
     // Dropbox 토큰
-    private static final String ACCESS_TOKEN = "sl.BqqC_gnIGKoQuwy8GaJL6V08OY_NborpQTcXz7fpn7m9itSNf567exZqUEJyasIum0_PtHJlyjxoO2c55-_ACHcRvBDgNtNQYlKOW3ja5j_oa9d2FG6oCLoPY4w99Gtd6BbGGO1N6G1bpfY";
+    private static final String ACCESS_TOKEN = "sl.BqpRUP6TFfi5NKEGA6KP7c3jvNR7QZBr6LV8S2r4o-MQAw-bMWZ1IY0-K2EgAnjOHmGjAELk_6_WYuGWECCWvWx9L-aNoW4nlVkSMAsRbXKPZSsjMC8FqtbYcScWh37oA4KF5qZw1PWAR1U";
 
     public void uploadFile(VideoDto videoDto) {
         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
@@ -69,7 +69,7 @@ public class DropboxService {
             FileMetadata metadata = builder.uploadAndFinish(inputStream);
             System.out.println("Dropbox 업로드 성공: " + metadata.getName() + ", 사이즈: " + metadata.getSize());
 
-               // 파일에 대한 다운로드 URL 가져오기
+            // 파일에 대한 다운로드 URL 가져오기
             String downloadUrl = client.files().getTemporaryLink(uploadPath).getLink();
             System.out.println("Dropbox 다운로드 URL: " + downloadUrl);
 
