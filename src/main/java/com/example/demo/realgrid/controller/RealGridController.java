@@ -24,17 +24,4 @@ public class RealGridController {
     public List<RealGridDto> searchData() {
         return RealGridService.getAlldata();
     }
-    // 로그인한 사용자의 이메일 가져오기
-    // @GetMapping("/getuseremail")
-    // public ResponseEntity<String> getUserEmail(HttpSession session) {
-
-    //     String userEmail = (String) session.getAttribute("email");
-
-    //     if (userEmail != null) {
-    //         return new ResponseEntity<>(userEmail, HttpStatus.OK);
-    //     } else {
-    //         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    //     }
-    // }
-    
 }
