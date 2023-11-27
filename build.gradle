@@ -27,6 +27,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // 스프링 Data JPA 의존성
 	// implementation 'javax.persistence:javax.persistence-api:2.2'
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final' // MapStruct 라이브러리 의존성
+	implementation 'com.dropbox.core:dropbox-core-sdk:3.1.1' // dropbox 의존성
+
 }
 
 tasks.named('test') {

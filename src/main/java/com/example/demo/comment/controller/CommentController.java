@@ -35,6 +35,7 @@ public class CommentController {
     // 댓글목록 가져오기
     @GetMapping("/getAllComments")
     public List<Map<String, Object>> getAllComments(@RequestParam Map<String, Object> data) {
+        System.out.println("data보냄:" + data);
         return commentService.getAllComments(data);
     }
 
@@ -47,8 +48,6 @@ public class CommentController {
     // 댓글 삭제
     @PostMapping("/deleteComment")
     public String deleteComment(@RequestBody Map<String, Object> data) {
-
-        System.out.println("댓글맨:" + data);
 
         commentService.delComment(data);
         
