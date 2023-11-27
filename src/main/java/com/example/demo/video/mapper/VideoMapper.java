@@ -13,6 +13,6 @@ public interface VideoMapper {
 
     LinkedHashMap<String, Object> searchVideo(HashMap<String, Object> parameters);
     
-    @Select("SELECT * FROM VUE_VIDEO")
+    @Select("SELECT * FROM VUE_VIDEO ORDER BY INP_DT DESC")
     List<VideoDto> getAllVideos();
 }

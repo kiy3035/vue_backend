@@ -22,10 +22,11 @@ public class DropboxService {
     private VideoMapper videoMapper;
 
     // Dropbox 토큰
-    private static final String ACCESS_TOKEN = "sl.BqpRUP6TFfi5NKEGA6KP7c3jvNR7QZBr6LV8S2r4o-MQAw-bMWZ1IY0-K2EgAnjOHmGjAELk_6_WYuGWECCWvWx9L-aNoW4nlVkSMAsRbXKPZSsjMC8FqtbYcScWh37oA4KF5qZw1PWAR1U";
+    private static final String ACCESS_TOKEN = "sl.BqpSxoV1thrm7ZGUZ-qwDkNPd4WNn8JOeNwoutr-W_MKQzjD84YPjKg3QwfqvNKYt0Z6aOlL7e78FpzBllbMGZ_Q0vxOC9VebI9xr4o48ynrsjNVGPvhWfo87yc71dRV1qZuyqh0RcP1JIM";
 
     public void uploadFile(VideoDto videoDto) {
         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
+
             // Dropbox 연동을 위한 설정
             DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/java-tutorial").build();
 
