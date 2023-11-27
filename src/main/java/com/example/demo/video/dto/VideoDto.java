@@ -40,6 +40,9 @@ public class VideoDto {
     @Getter @Setter
     private MultipartFile videoFile;
 
+    @Getter @Setter
+    private String video_url;
+
     public void setFilename(String videoId) {
     }
 }
