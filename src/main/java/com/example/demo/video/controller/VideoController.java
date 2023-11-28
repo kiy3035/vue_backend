@@ -33,11 +33,10 @@ public class VideoController {
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.println(title);
         System.out.println(content);
-
         // 파일 이름을 video_id로 설정
         String originalFilename = videoFile.getOriginalFilename();
         String extension = originalFilename.substring(originalFilename.lastIndexOf('.'));
-        String videoId = System.currentTimeMillis() + extension;
+        String videoId = System.currentTimeMillis() + extension; // 랜덤 ID 생성
 
         // 업로드된 비디오 파일과 DTO를 서비스에 전달
         videoDto.setVideo_id(videoId);
@@ -49,10 +48,18 @@ public class VideoController {
 
         // 데이터베이스에 비디오 정보를 저장
         // String result = videoService.uploadVideo(videoDto, videoFile); // 데이터베이스에 비디오 정보를 저장하도록 수정
-
         dropboxService.uploadFile(videoDto);
+       
+       // 구글드라이브(보류)
+        // try {
+        //     googleDriveService.uploadFile(videoDto);
+        // } catch (IOException e) {
+        //     System.out.println("오류맨@@@@@@@@@@@@@@@@");
+        //     // e.printStackTrace();
+        // }
 
     }
+    
     
     @GetMapping("/api/videos")
     @ResponseBody

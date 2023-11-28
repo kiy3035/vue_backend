@@ -19,9 +19,6 @@ import com.example.demo.video.mapper.VideoMapper;
 @PropertySource("classpath:application.properties")
 public class VideoServiceImpl implements VideoService {
 
-    @Value("${file.upload.directory}")
-    private String uploadDirectory;
-
     @Resource
     private VideoMapper videoMapper;
 
