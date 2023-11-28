@@ -29,5 +29,8 @@ public class CommunityDto {
     @Getter @Setter
     private String like_count;
 
+    @Getter @Setter
+    private String id;
+
     
 }

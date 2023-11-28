@@ -15,6 +15,7 @@
                                   , NICKNAME
                                   , EMAIL
                                   , LIKE_COUNT
+                                  , ID
                                 )
                         VALUES(
                                     #{title}
@@ -26,6 +27,7 @@
                                   , #{nickname}
                                   , 'as17269@web2gether.co.kr'
                                   , 0
+                                  , #{id}
                               )
     </insert>
 

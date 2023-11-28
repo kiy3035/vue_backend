@@ -13,7 +13,7 @@ public interface CommunityMapper {
 
     void insertUserInfo(Map<String, Object> data);
 
-    @Select("SELECT * FROM VUE_COMMUNITY")
+    @Select("SELECT * FROM VUE_COMMUNITY ORDER BY INP_DT DESC")
     List<CommunityDto> getAlldata();
 
 }
