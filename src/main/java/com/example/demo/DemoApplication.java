@@ -3,6 +3,7 @@ package com.example.demo;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
                            , "com.example.demo.community.mapper"
                            , "com.example.demo.realgrid.mapper"
                         }) // Mapper 인터페이스가 위치한 패키지를 정확하게 지정
+@EntityScan(basePackages = "com.example.demo.realgrid.entity")     // 엔터티 클래스
 public class DemoApplication {
 
     public static void main(String[] args) {
