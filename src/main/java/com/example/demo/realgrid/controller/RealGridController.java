@@ -22,6 +22,6 @@ public class RealGridController {
     @GetMapping("/searchTest")
     @ResponseBody
     public List<RealGridDto> searchData() {
-        return RealGridService.getAlldata();
+        return RealGridService.getAllDataDto();
     }
 }
