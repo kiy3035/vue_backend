@@ -4,7 +4,7 @@
 <mapper namespace="com.example.demo.community.mapper.CommunityMapper">
 
     <!-- 커뮤니티 insert -->
-    <insert id="insertUserInfo" parameterType="java.util.Map">
+    <insert id="insertCommunity" parameterType="java.util.Map">
         INSERT INTO VUE_COMMUNITY(
                                     TITLE
                                   , CONT
@@ -31,5 +31,22 @@
                               )
     </insert>
 
+    <!-- 커뮤니티 update -->
+    <update id="updateCommunity" parameterType="java.util.Map">
+      UPDATE VUE_COMMUNITY
+         SET TITLE         = #{title}
+           , CONT          = #{cont}
+           , TAG1          = #{tag1}
+           , TAG2          = #{tag2}
+           , TAG3          = #{tag3}
+           , UPD_DT        = #{upd_dt}
+       WHERE ID = #{id}
+    </update>
 
+    <!-- 커뮤니티 delete -->
+    <update id="deleteCommunity" parameterType="java.util.Map">
+      DELETE 
+        FROM VUE_COMMUNITY
+       WHERE ID = #{id}
+    </update>
 </mapper>
