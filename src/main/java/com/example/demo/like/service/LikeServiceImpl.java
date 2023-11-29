@@ -40,7 +40,11 @@ public class LikeServiceImpl implements LikeService {
     }
 
     public List<Map<String, Object>> getLikedVideoList(Map<String, Object> data){
-        return likeMapper.getDupLike(data);
+        if(data.get("userEamil") != null){
+            return likeMapper.getDupLike(data);
+        }else{
+            return null;
+        }
     }
 
 }
