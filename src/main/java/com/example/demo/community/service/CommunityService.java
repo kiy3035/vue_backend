@@ -6,7 +6,9 @@ import java.util.Map;
 import com.example.demo.community.dto.CommunityDto;
 
 public interface CommunityService {
-    String inputUserInfo(Map<String, Object> userInfo);
+    String insertCommunity(Map<String, Object> community);
+    String updateCommunity(Map<String, Object> community);
+    String deleteCommunity(Map<String, Object> community);
     List<CommunityDto> getAlldata();
     // List<LoginDto> getTitles();
     // Map<String, Object> getDatas(Map<String, Object> title);

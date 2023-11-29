@@ -24,12 +24,31 @@ public class CommunityController {
     private CommunityService CommunityService;
 
     // 글쓰기
-    @PostMapping("/write")
-    public String singUp(@RequestBody Map<String, Object> data) {
+    @PostMapping("/insert")
+    public String insertCommunity(@RequestBody Map<String, Object> data) {
 
         data.put("inp_dt", new Date()); // SYSDATE 추가
 
-        String result = CommunityService.inputUserInfo(data);
+        String result = CommunityService.insertCommunity(data);
+
+        return result;
+    }
+
+    // 글수정
+    @PostMapping("/update")
+    public String updateCommunity(@RequestBody Map<String, Object> data) {
+
+        data.put("upd_dt", new Date()); // SYSDATE 추가
+
+        String result = CommunityService.updateCommunity(data);
+
+        return result;
+    }
+    // 글삭제
+    @PostMapping("/delete")
+    public String deleteCommunity(@RequestBody Map<String, Object> data) {
+
+        String result = CommunityService.deleteCommunity(data);
 
         return result;
     }
