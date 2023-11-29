@@ -22,8 +22,9 @@ public class DropboxService {
     private VideoMapper videoMapper;
 
     // Dropbox 토큰
-    private static final String ACCESS_TOKEN = "sl.BqpSxoV1thrm7ZGUZ-qwDkNPd4WNn8JOeNwoutr-W_MKQzjD84YPjKg3QwfqvNKYt0Z6aOlL7e78FpzBllbMGZ_Q0vxOC9VebI9xr4o48ynrsjNVGPvhWfo87yc71dRV1qZuyqh0RcP1JIM";
-
+    private static final String ACCESS_TOKEN =
+    "sl.BqyXYbYfpumsFQde9Yjf5UjxV8Dn6Nybd5YbjxfbiSN38OB7nK-oca2ZdxVvqJVfOoDBYP7c_YorVuWPTsTt5U3PGcX4oQ62IwaXm9QMy_yTrfeytqlv68dFB9Dkk_6BZylcbqnP80lEpbE";
+    
     public void uploadFile(VideoDto videoDto) {
         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
 
@@ -53,7 +54,7 @@ public class DropboxService {
                     .withClientModified(commitInfo.getClientModified())
                     .withMute(true);
 
-            // MyBatis를 사용하여 비디오 정보 저장
+            // DB에 저장
             String dbUploadPath = uploadFileAndGetDownloadLink(builder, client, uploadPath, inputStream);
             videoDto.setPath(dbUploadPath);
             videoMapper.insertVideo(videoDto);
