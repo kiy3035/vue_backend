@@ -14,6 +14,9 @@ public class VideoDto {
     private String content;
 
     @Getter @Setter
+    private String user_email;
+
+    @Getter @Setter
     private String user_name;
 
     @Getter @Setter
