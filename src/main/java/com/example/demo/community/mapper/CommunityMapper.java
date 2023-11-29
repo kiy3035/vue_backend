@@ -11,7 +11,9 @@ import com.example.demo.community.dto.CommunityDto;
 @Mapper
 public interface CommunityMapper {
 
-    void insertUserInfo(Map<String, Object> data);
+    void insertCommunity(Map<String, Object> data);
+    void updateCommunity(Map<String, Object> data);
+    void deleteCommunity(Map<String, Object> data);
 
     @Select("SELECT * FROM VUE_COMMUNITY ORDER BY INP_DT DESC")
     List<CommunityDto> getAlldata();

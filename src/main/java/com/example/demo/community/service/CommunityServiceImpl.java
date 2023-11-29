@@ -17,9 +17,29 @@ public class CommunityServiceImpl implements CommunityService {
         this.CommunityMapper = CommunityMapper;
     }
 
-    public String inputUserInfo(Map<String, Object> userInfo) {
+    public String insertCommunity(Map<String, Object> insertCommunity) {
         try {
-            CommunityMapper.insertUserInfo(userInfo);
+            CommunityMapper.insertCommunity(insertCommunity);
+            return null;
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+            return "오류발생!!";
+        }
+    }
+    public String updateCommunity(Map<String, Object> updateCommunity) {
+        try {
+            CommunityMapper.updateCommunity(updateCommunity);
+            return null;
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+            return "오류발생!!";
+        }
+    }
+    public String deleteCommunity(Map<String, Object> deleteCommunity) {
+        try {
+            CommunityMapper.deleteCommunity(deleteCommunity);
             return null;
         } 
         catch (Exception e) {
