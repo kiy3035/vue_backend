@@ -32,5 +32,11 @@ public class CommunityDto {
     @Getter @Setter
     private String id;
 
+    @Getter @Setter
+    private String email;
+
+    @Getter @Setter
+    private String upd_dt;
+
     
 }
