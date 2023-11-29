@@ -23,8 +23,12 @@ public class DropboxService {
 
     // Dropbox 토큰
     private static final String ACCESS_TOKEN =
-    "sl.BqyXYbYfpumsFQde9Yjf5UjxV8Dn6Nybd5YbjxfbiSN38OB7nK-oca2ZdxVvqJVfOoDBYP7c_YorVuWPTsTt5U3PGcX4oQ62IwaXm9QMy_yTrfeytqlv68dFB9Dkk_6BZylcbqnP80lEpbE";
-    
+    "sl.BqyprAOMQnBBXzBtsWqT0jgA7ua6ptYM0gFB09q1VOulLNtWSm9dYlGsqS0PbWJ6iF2MgaHcm3p_oxJ4BD1paSYyoB3BGETgcaRgSyd9ai5P3X_rkfiRodYKKXjlJtM7EBctj56kiz9ZiRs";
+
+        // Dropbox 앱 설정에서 얻은 앱 키와 시크릿
+        private static final String APP_KEY = "your_app_key";
+        private static final String APP_SECRET = "your_app_secret";
+        
     public void uploadFile(VideoDto videoDto) {
         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
 
