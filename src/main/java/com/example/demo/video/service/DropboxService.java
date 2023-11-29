@@ -23,13 +23,7 @@ public class DropboxService {
 
     // Dropbox 토큰
     private static final String ACCESS_TOKEN =
-    "sl.BqyprAOMQnBBXzBtsWqT0jgA7ua6ptYM0gFB09q1VOulLNtWSm9dYlGsqS0PbWJ6iF2MgaHcm3p_oxJ4BD1paSYyoB3BGETgcaRgSyd9ai5P3X_rkfiRodYKKXjlJtM7EBctj56kiz9ZiRs";
-
-        // Dropbox 앱 설정에서 얻은 앱 키와 시크릿
-        private static final String APP_KEY = "your_app_key";
-        private static final String APP_SECRET = "your_app_secret";
-        
-    public void uploadFile(VideoDto videoDto) {
+"sl.BqxSUN4jI3DdX2R9AqCEpKmqkds5-i6ihrYLd3huq-I_58Wfba3fDRbWEQ6hJ8EjmSwSDtxHthjgL7V4TEOXmerN39pWy0MZnMR5k_reKowLPweQTlCseeacbMp7pQfzSgJZlYMOM8k-atE";    public String uploadFile(VideoDto videoDto) {
         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
 
             // Dropbox 연동을 위한 설정
@@ -62,9 +56,10 @@ public class DropboxService {
             String dbUploadPath = uploadFileAndGetDownloadLink(builder, client, uploadPath, inputStream);
             videoDto.setPath(dbUploadPath);
             videoMapper.insertVideo(videoDto);
-
+            return "업로드 성공";
         } catch (Exception e) {
             e.printStackTrace();
+            return "업로드 실패";
         }
     }
 

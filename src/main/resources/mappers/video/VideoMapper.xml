@@ -11,6 +11,7 @@
                             , PATH
                             , TYPE
                             , VIDEO_ID
+                            , USER_EMAIL
                             , INP_DT
                             , LIKE_COUNT
                             , COMMENT_COUNT
@@ -21,6 +22,7 @@
                         , #{path}
                         , #{type}
                         , #{video_id}
+                        , #{user_email}
                         , #{inp_dt}
                         , 0
                         , 0

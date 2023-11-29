@@ -27,8 +27,9 @@ public class VideoController {
     private DropboxService dropboxService;
 
     @PostMapping("/api/upload")
-    public void uploadVideo(@RequestPart("videoFile") MultipartFile videoFile, VideoDto videoDto,
-                                @RequestParam("videoTitle") String title, @RequestParam("videoContent") String content) {
+    public String uploadVideo(@RequestPart("videoFile") MultipartFile videoFile, VideoDto videoDto,
+                                @RequestParam("videoTitle") String title, @RequestParam("videoContent") String content,
+                                @RequestParam("userEmail") String userEmail) {
                                     
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
         System.out.println(title);
@@ -44,11 +45,12 @@ public class VideoController {
         videoDto.setVideoFile(videoFile);
         videoDto.setTitle(title);
         videoDto.setContent(content);
+        videoDto.setUser_email(userEmail);
 
 
         // 데이터베이스에 비디오 정보를 저장
         // String result = videoService.uploadVideo(videoDto, videoFile); // 데이터베이스에 비디오 정보를 저장하도록 수정
-        dropboxService.uploadFile(videoDto);
+        
        
        // 구글드라이브(보류)
         // try {
@@ -57,7 +59,9 @@ public class VideoController {
         //     System.out.println("오류맨@@@@@@@@@@@@@@@@");
         //     // e.printStackTrace();
         // }
-
+        String result = dropboxService.uploadFile(videoDto);
+        System.out.println("result:" + result);
+        return result;
     }
     
     
