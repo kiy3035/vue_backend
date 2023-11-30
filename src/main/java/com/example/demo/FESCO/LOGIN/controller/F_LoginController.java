@@ -23,11 +23,13 @@ public class F_LoginController {
 
     // 로그인
     @PostMapping("/login")
-    public String insertCommunity(@RequestBody Map<String, Object> data) {
-    System.out.println("fesco 로그인 컨트롤러:" + data);
-        String result = loginService.insertCommunity(data);
+    public int checkLogin(@RequestBody Map<String, Object> data) {
+        
+        System.out.println("fesco 로그인 컨트롤러:" + data);
 
-        return result;
+        loginService.checkLogin(data);
+
+        return 1;
     }
 
     

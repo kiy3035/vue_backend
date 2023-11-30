@@ -2,8 +2,7 @@ package com.example.demo.video.service;
 
 import java.io.InputStream;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dropbox.core.DbxRequestConfig;
@@ -18,12 +17,14 @@ import com.example.demo.video.mapper.VideoMapper;
 @Service
 public class DropboxService {
 
-    @Resource
+    @Autowired
     private VideoMapper videoMapper;
 
     // Dropbox 토큰
     private static final String ACCESS_TOKEN =
-"sl.BqxSUN4jI3DdX2R9AqCEpKmqkds5-i6ihrYLd3huq-I_58Wfba3fDRbWEQ6hJ8EjmSwSDtxHthjgL7V4TEOXmerN39pWy0MZnMR5k_reKowLPweQTlCseeacbMp7pQfzSgJZlYMOM8k-atE";    public String uploadFile(VideoDto videoDto) {
+"sl.BqxSUN4jI3DdX2R9AqCEpKmqkds5-i6ihrYLd3huq-I_58Wfba3fDRbWEQ6hJ8EjmSwSDtxHthjgL7V4TEOXmerN39pWy0MZnMR5k_reKowLPweQTlCseeacbMp7pQfzSgJZlYMOM8k-atE";    
+    
+    public String uploadFile(VideoDto videoDto) {
         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
 
             // Dropbox 연동을 위한 설정
@@ -62,7 +63,7 @@ public class DropboxService {
             return "업로드 실패";
         }
     }
-
+    
     private String uploadFileAndGetDownloadLink(UploadBuilder builder, DbxClientV2 client, String uploadPath, InputStream inputStream) {
         try {
             

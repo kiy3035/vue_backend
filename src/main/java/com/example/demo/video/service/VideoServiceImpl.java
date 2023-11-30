@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +17,7 @@ import com.example.demo.video.mapper.VideoMapper;
 @PropertySource("classpath:application.properties")
 public class VideoServiceImpl implements VideoService {
 
-    @Resource
+    @Autowired
     private VideoMapper videoMapper;
 
     @Override
