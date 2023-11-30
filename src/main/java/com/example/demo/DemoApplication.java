@@ -4,26 +4,25 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @CrossOrigin(origins = "http://localhost:8001")
-@MapperScan(basePackages = { "com.example.demo.video.mapper"
-                           , "com.example.demo.login.mapper"
-                           , "com.example.demo.mypage.mapper"
-                           , "com.example.demo.like.mapper" 
-                           , "com.example.demo.comment.mapper" 
-                           , "com.example.demo.community.mapper"
-                           , "com.example.demo.realgrid.mapper"
-                        }) // Mapper 인터페이스가 위치한 패키지를 정확하게 지정
-@EntityScan(basePackages = { "com.example.demo.realgrid.entity"
-                           , "com.example.demo.FESCO.BOOKING_ENTRY.entity"})     // 엔터티 클래스
+// @MapperScan(basePackages = { "com.example.demo.video.mapper"
+//                            , "com.example.demo.login.mapper"
+//                            , "com.example.demo.mypage.mapper"
+//                            , "com.example.demo.like.mapper" 
+//                            , "com.example.demo.comment.mapper" 
+//                            , "com.example.demo.community.mapper"
+//                            , "com.example.demo.realgrid.mapper"
+//                            , "com.example.demo.FESCO.BOOKING_ENTRY.mapper"
+//                            , "com.example.demo.FESCO.LOGIN.mapper"
+
+//                         }) // Mapper 인터페이스가 위치한 패키지를 정확하게 지정
+// @EntityScan(basePackages = {"com.example.demo.realgrid.entity", "com.example.demo.FESCO.BOOKING_ENTRY.entity"})     // 엔터티 클래스
 public class DemoApplication {
 
     public static void main(String[] args) {
