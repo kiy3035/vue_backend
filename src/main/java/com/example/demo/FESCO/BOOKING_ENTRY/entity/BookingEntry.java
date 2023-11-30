@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "TC_CODE_DTL") // 데이터베이스 테이블과 매핑될 테이블 이름 지정
+@Table(name = "TCMN_CODE_DTL") // 데이터베이스 테이블과 매핑될 테이블 이름 지정
 public class BookingEntry {
 
     @Id
