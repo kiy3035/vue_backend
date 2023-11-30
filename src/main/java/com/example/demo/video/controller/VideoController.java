@@ -3,6 +3,7 @@ package com.example.demo.video.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,6 +61,7 @@ public class VideoController {
         //     // e.printStackTrace();
         // }
         String result = dropboxService.uploadFile(videoDto);
+        // String result = "ㅎㅇ";
         System.out.println("result:" + result);
         return result;
     }

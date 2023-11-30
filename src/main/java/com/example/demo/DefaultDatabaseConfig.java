@@ -10,36 +10,41 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import java.util.Properties;
 
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@MapperScan(basePackages = { "com.example.demo.video.mapper"
+@EnableTransactionManagement
+@MapperScan(basePackages = { 
+                             "com.example.demo.video.mapper"
                            , "com.example.demo.login.mapper"
                            , "com.example.demo.mypage.mapper"
                            , "com.example.demo.like.mapper" 
                            , "com.example.demo.comment.mapper" 
                            , "com.example.demo.community.mapper"
-                           , "com.example.demo.realgrid.mapper"
-                           }
+}
                            , sqlSessionFactoryRef = "defaultSqlSessionFactory")
 @EnableJpaRepositories(
-    basePackages = { "com.example.demo.realgrid.repository" },
-    entityManagerFactoryRef = "defaultEntityManagerFactory",
-    transactionManagerRef = "defaultTransactionManager"
+        basePackages = "com.example.demo.realgrid.repository",
+        entityManagerFactoryRef = "defaultEntityManagerFactory",
+        transactionManagerRef = "defaultTransactionManagerJpa"
 )
-@EntityScan(basePackages = "com.example.demo.realgrid.entity")     // 엔터티 클래스
-@EnableTransactionManagement
+@EntityScan(
+    basePackages =  "com.example.demo.realgrid.entity"
+)
 public class DefaultDatabaseConfig {
 
     @Bean(name = "defaultDataSource", destroyMethod = "close")
@@ -57,44 +62,35 @@ public class DefaultDatabaseConfig {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(defaultDataSource);
         sqlSessionFactoryBean.setMapperLocations(
-        applicationContext.getResources("classpath*:mappers/**/*Mapper.xml"));
+        new PathMatchingResourcePatternResolver().getResources("classpath*:mappers/**/*.xml"));
         return sqlSessionFactoryBean.getObject();
-    }
-
-    // @Bean(name = "defaultSqlSessionTemplate")
-    // @Primary
-    // public SqlSessionTemplate defaultSqlSessionTemplate(SqlSessionFactory defaultSqlSessionFactory) {
-    //     return new SqlSessionTemplate(defaultSqlSessionFactory);
-    // }
-
-    @Bean(name = "defaultEntityManagerFactory")
-    @Primary
-    public LocalContainerEntityManagerFactoryBean defaultEntityManagerFactory(
-        @Qualifier("defaultDataSource") DataSource defaultDataSource) {
-
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(defaultDataSource);
-        em.setPackagesToScan("com.example.demo.realgrid.entity");
-
-         // Hibernate JPA Vendor Adapter 추가
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
-
-        // JPA 속성 추가
-        Properties jpaProperties = new Properties();
-        jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        jpaProperties.put("hibernate.show_sql", "true"); // 쿼리 출력 여부
-        jpaProperties.put("hibernate.format_sql", "true"); // 포맷팅된 쿼리 출력 여부
-
-        em.setJpaProperties(jpaProperties);
-
-    return em;
     }
 
     @Bean(name = "defaultTransactionManager")
     @Primary
-    public JpaTransactionManager defaultTransactionManager(
+    public PlatformTransactionManager defaultTransactionManager(
+            @Qualifier("defaultDataSource") DataSource defaultDataSource) {
+        return new DataSourceTransactionManager(defaultDataSource);
+    }
+
+    // JPA 설정
+    // @Primary
+    @Bean(name = "defaultEntityManagerFactory")
+    public LocalContainerEntityManagerFactoryBean defaultEntityManagerFactory(
+            EntityManagerFactoryBuilder builder,
+            @Qualifier("defaultDataSource") DataSource defaultDataSource) {
+        return builder
+                .dataSource(defaultDataSource)
+                .packages("com.example.demo.realgrid.entity")
+                .persistenceUnit("default")
+                .build();
+    }
+
+    // @Primary
+    @Bean(name = "defaultTransactionManagerJpa")
+    public JpaTransactionManager defaultTransactionManagerJpa(
             @Qualifier("defaultEntityManagerFactory") EntityManagerFactory defaultEntityManagerFactory) {
         return new JpaTransactionManager(defaultEntityManagerFactory);
     }
+
 }

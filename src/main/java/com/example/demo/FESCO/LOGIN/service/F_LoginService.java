@@ -1,9 +1,9 @@
-package com.example.demo.FESCO.LOGIN.service;
+// package com.example.demo.FESCO.LOGIN.service;
 
-import java.util.Map;
+// import java.util.Map;
 
-public interface F_LoginService {
+// public interface F_LoginService {
 
-    int checkLogin(Map<String, Object> community);
+//     int checkLogin(Map<String, Object> community);
     
-}
+// }
