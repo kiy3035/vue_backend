@@ -22,7 +22,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
                            , "com.example.demo.community.mapper"
                            , "com.example.demo.realgrid.mapper"
                         }) // Mapper 인터페이스가 위치한 패키지를 정확하게 지정
-@EntityScan(basePackages = "com.example.demo.realgrid.entity")     // 엔터티 클래스
+@EntityScan(basePackages = { "com.example.demo.realgrid.entity"
+                           , "com.example.demo.FESCO.BOOKING_ENTRY.entity"})     // 엔터티 클래스
 public class DemoApplication {
 
     public static void main(String[] args) {
