@@ -1,25 +1,27 @@
-// package com.example.demo.FESCO.LOGIN.service;
+package com.example.demo.FESCO.LOGIN.service;
 
-// import java.util.Map;
+import java.util.Map;
 
-// import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-// import com.example.demo.FESCO.LOGIN.mapper.F_LoginMapper;
+import com.example.demo.FESCO.LOGIN.repository.F_LoginRepository;
 
-// @Service
-// public class F_LoginServiceImpl implements F_LoginService {
+
+@Service
+public class F_LoginServiceImpl implements F_LoginService {
     
-//     private final F_LoginMapper loginMapper;
+    @Autowired
+    private F_LoginRepository loginRepository;
     
-//     public F_LoginServiceImpl(F_LoginMapper loginMapper) {
-//         this.loginMapper = loginMapper;
-//     }
+    public int checkLogin(Map<String, Object> data) {
 
-//     public int checkLogin(Map<String, Object> data) {
+        String usrCd = (String) data.get("usrCd");
+        String usrPw = (String) data.get("usrPw");
 
-//         loginMapper.loginCheck(data);
-
-//         return 1;
-//     }
+        int result = loginRepository.countByUsrCdAndUsrPw(usrCd, usrPw);
+        System.out.println("____-------" + result);
+        return result;
+    }
     
-// }
+}

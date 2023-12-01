@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.video.dto.VideoDto;
-import com.example.demo.video.service.DropboxService;
+// import com.example.demo.video.service.DropboxService;
 import com.example.demo.video.service.VideoService;
 
 @RestController
@@ -24,8 +24,8 @@ public class VideoController {
     @Autowired
     private VideoService videoService;
 
-    @Autowired
-    private DropboxService dropboxService;
+    // @Autowired
+    // private DropboxService dropboxService;
 
     @PostMapping("/api/upload")
     public String uploadVideo(@RequestPart("videoFile") MultipartFile videoFile, VideoDto videoDto,
@@ -60,8 +60,8 @@ public class VideoController {
         //     System.out.println("오류맨@@@@@@@@@@@@@@@@");
         //     // e.printStackTrace();
         // }
-        String result = dropboxService.uploadFile(videoDto);
-        // String result = "ㅎㅇ";
+        // String result = dropboxService.uploadFile(videoDto);
+        String result = "ㅎㅇ";
         System.out.println("result:" + result);
         return result;
     }

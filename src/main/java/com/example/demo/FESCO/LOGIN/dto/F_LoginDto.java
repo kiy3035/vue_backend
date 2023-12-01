@@ -1,6 +1,14 @@
-// package com.example.demo.FESCO.LOGIN.dto;
+package com.example.demo.FESCO.LOGIN.dto;
 
-// public class F_LoginDto {
+import lombok.Getter;
+import lombok.Setter;
 
-    
-// }
+public class F_LoginDto {
+
+    @Getter @Setter
+    private String usrCd;
+
+    @Getter @Setter
+    private String usrPw;
+
+}
