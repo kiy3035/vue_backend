@@ -73,8 +73,8 @@ public class DefaultDatabaseConfig {
         return new DataSourceTransactionManager(defaultDataSource);
     }
 
+    
     // JPA 설정
-    // @Primary
     @Bean(name = "defaultEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean defaultEntityManagerFactory(
             EntityManagerFactoryBuilder builder,
@@ -86,7 +86,6 @@ public class DefaultDatabaseConfig {
                 .build();
     }
 
-    // @Primary
     @Bean(name = "defaultTransactionManagerJpa")
     public JpaTransactionManager defaultTransactionManagerJpa(
             @Qualifier("defaultEntityManagerFactory") EntityManagerFactory defaultEntityManagerFactory) {

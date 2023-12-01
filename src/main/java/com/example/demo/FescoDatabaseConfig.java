@@ -24,7 +24,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @EnableJpaRepositories(
         basePackages = {
                             "com.example.demo.FESCO.BOOKING_ENTRY.repository",
-                            // "com.example.demo.realgrid.repository"
+                            "com.example.demo.FESCO.LOGIN.repository",
         },
         entityManagerFactoryRef = "fescoEntityManagerFactory",
         transactionManagerRef = "fescoTransactionManager"
@@ -32,7 +32,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @EntityScan(
     basePackages = {
                         "com.example.demo.FESCO.BOOKING_ENTRY.entity",
-                        // "com.example.demo.realgrid.entity"
+                        "com.example.demo.FESCO.LOGIN.entity",
     }
 )
 public class FescoDatabaseConfig {
@@ -50,7 +50,7 @@ public class FescoDatabaseConfig {
             @Qualifier("fescoDataSource") DataSource fescoDataSource) {
         return builder
                 .dataSource(fescoDataSource)
-                .packages("com.example.demo.FESCO.BOOKING_ENTRY.entity")
+                .packages("com.example.demo.FESCO.BOOKING_ENTRY.entity", "com.example.demo.FESCO.LOGIN.entity")
                 .persistenceUnit("fesco")
                 .build();
     }
