@@ -16,11 +16,12 @@ public class F_LoginServiceImpl implements F_LoginService {
     
     public int checkLogin(Map<String, Object> data) {
 
-        String usrCd = (String) data.get("usrCd");
-        String usrPw = (String) data.get("usrPw");
-
+        String usrCd = (String) data.get("username");
+        String usrPw = (String) data.get("password");
+    
         int result = loginRepository.countByUsrCdAndUsrPw(usrCd, usrPw);
-        System.out.println("____-------" + result);
+        System.out.println("--------결과----------" + result);
+
         return result;
     }
     

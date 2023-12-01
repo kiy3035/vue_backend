@@ -25,6 +25,7 @@ import com.zaxxer.hikari.HikariDataSource;
         basePackages = {
                             "com.example.demo.FESCO.BOOKING_ENTRY.repository",
                             "com.example.demo.FESCO.LOGIN.repository",
+                            "com.example.demo.FESCO.TEST.repository",
         },
         entityManagerFactoryRef = "fescoEntityManagerFactory",
         transactionManagerRef = "fescoTransactionManager"
@@ -33,6 +34,8 @@ import com.zaxxer.hikari.HikariDataSource;
     basePackages = {
                         "com.example.demo.FESCO.BOOKING_ENTRY.entity",
                         "com.example.demo.FESCO.LOGIN.entity",
+                        "com.example.demo.FESCO.TEST.entity",
+                        
     }
 )
 public class FescoDatabaseConfig {
@@ -50,7 +53,10 @@ public class FescoDatabaseConfig {
             @Qualifier("fescoDataSource") DataSource fescoDataSource) {
         return builder
                 .dataSource(fescoDataSource)
-                .packages("com.example.demo.FESCO.BOOKING_ENTRY.entity", "com.example.demo.FESCO.LOGIN.entity")
+                .packages("com.example.demo.FESCO.BOOKING_ENTRY.entity"
+                                           , "com.example.demo.FESCO.LOGIN.entity"
+                                           , "com.example.demo.FESCO.TEST.entity"
+                        )
                 .persistenceUnit("fesco")
                 .build();
     }
