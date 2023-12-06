@@ -2,9 +2,12 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -32,14 +35,14 @@ public class DemoApplication {
         };
     }
     
-    // @Bean
-    // public ErrorViewResolver customErrorViewResolver() {
-    //     final ErrorViewResolver resolver = (request, status, model) -> {
-    //         if (status == HttpStatus.NOT_FOUND) {
-    //             return new ModelAndView("forward:/test.html");
-    //         }
-    //         return null;
-    //     };
-    //     return resolver;
-    // }
+    @Bean
+    public ErrorViewResolver customErrorViewResolver() {
+        final ErrorViewResolver resolver = (request, status, model) -> {
+            if (status == HttpStatus.NOT_FOUND) {
+                return new ModelAndView("forward:/test.html");
+            }
+            return null;
+        };
+        return resolver;
+    }
 }
