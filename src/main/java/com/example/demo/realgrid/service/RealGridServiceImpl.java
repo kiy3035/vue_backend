@@ -25,7 +25,7 @@ public class RealGridServiceImpl implements RealGridService {
     public List<RealGridDto> getAllDataDto() {
         // RealGridRepository에서 모든 엔터티를 조회
         List<RealGridEntity> entities = realGridRepository.findAll();
-
+        System.out.println("리얼그리드 서비스임플 : " + entities);
         // 엔터티를 DTO로 변환하여 리스트로 반환
         return entities.stream().map(this::convertToDto).collect(Collectors.toList());
     }
