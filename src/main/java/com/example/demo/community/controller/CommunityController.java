@@ -17,7 +17,6 @@ import com.example.demo.community.dto.CommunityDto;
 
 
 @RestController
-// @CrossOrigin(origins = "http://localhost:8001") // 프론트엔드 포트
 public class CommunityController {
 
     @Autowired
