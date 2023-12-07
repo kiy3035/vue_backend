@@ -20,14 +20,14 @@ public class DemoApplication {
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-
+// 허용할 오리진(Origin) 설정
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // 해당 패턴에 대해서 CORS 설정을 추가
-                        .allowedOrigins("http://localhost:8001") // 허용할 오리진(Origin) 설정
+                        .allowedOrigins("http://localhost:8001", "https://web-frontvue-57lz2alptar5jk.sel4.cloudtype.app") // 허용할 오리진(Origin) 설정
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // 허용할 HTTP 메서드 설정
                         .allowedHeaders("Origin", "Content-Type", "Accept", "Authorization") // 허용할 헤더 설정
                         .allowCredentials(true); // Credentials 허용 여부
