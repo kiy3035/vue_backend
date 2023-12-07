@@ -13,7 +13,6 @@ import com.example.demo.realgrid.service.RealGridService;
 
 
 @RestController
-// @CrossOrigin(origins = "http://localhost:8001") // 프론트엔드 포트
 public class RealGridController {
 
     @Autowired
@@ -22,6 +21,7 @@ public class RealGridController {
     @GetMapping("/searchTest")
     @ResponseBody
     public List<RealGridDto> searchData() {
+        System.out.println("리얼그리드 컨트롤러입니다");
         return RealGridService.getAllDataDto();
     }
 }

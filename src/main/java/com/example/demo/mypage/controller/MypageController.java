@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 @RestController
-// @CrossOrigin(origins = "http://localhost:8001") // 프론트엔드 포트
 public class MypageController {
 
     @Autowired

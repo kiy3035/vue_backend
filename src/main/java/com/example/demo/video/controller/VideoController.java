@@ -17,8 +17,6 @@ import com.example.demo.video.dto.VideoDto;
 import com.example.demo.video.service.VideoService;
 
 @RestController
-// @CrossOrigin(origins = "http://localhost:8001")
-// @RequestMapping("/api")
 public class VideoController {
     
     @Autowired

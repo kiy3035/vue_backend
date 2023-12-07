@@ -17,7 +17,6 @@ import com.example.demo.FESCO.TEST.repository.TestRepository;
 
 
 @RestController
-// @CrossOrigin(origins = "http://localhost:8001")
 @RequestMapping("/FESCO")
 public class TestController {
 
