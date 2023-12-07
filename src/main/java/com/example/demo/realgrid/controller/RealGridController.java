@@ -13,7 +13,7 @@ import com.example.demo.realgrid.service.RealGridService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8001") // 프론트엔드 포트
+// @CrossOrigin(origins = "http://localhost:8001") // 프론트엔드 포트
 public class RealGridController {
 
     @Autowired

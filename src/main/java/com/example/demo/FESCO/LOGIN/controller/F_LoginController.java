@@ -14,7 +14,7 @@ import com.example.demo.FESCO.LOGIN.service.F_LoginService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8001")
+// @CrossOrigin(origins = "http://localhost:8001")
 @RequestMapping("/FESCO")
 public class F_LoginController {
 

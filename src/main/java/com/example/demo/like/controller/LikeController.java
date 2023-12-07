@@ -15,7 +15,7 @@ import com.example.demo.like.service.LikeService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8001", methods = { RequestMethod.POST })
+// @CrossOrigin(origins = "http://localhost:8001", methods = { RequestMethod.POST })
 public class LikeController {
 
     @Autowired
