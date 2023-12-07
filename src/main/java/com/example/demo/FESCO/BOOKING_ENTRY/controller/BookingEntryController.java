@@ -14,7 +14,7 @@ import com.example.demo.FESCO.BOOKING_ENTRY.service.BookingEntryService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8001")
+// @CrossOrigin(origins = "http://localhost:8001")
 public class BookingEntryController {
 
     @Autowired

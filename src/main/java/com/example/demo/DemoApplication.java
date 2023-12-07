@@ -13,14 +13,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @SpringBootApplication
-@CrossOrigin(origins = {"http://localhost:8001" , "https://web-frontvue-57lz2alptar5jk.sel4.cloudtype.app"})
+@CrossOrigin(origins = {"http://localhost:8001", "https://web-frontvue-57lz2alptar5jk.sel4.cloudtype.app"})
 @Import({DefaultDatabaseConfig.class, FescoDatabaseConfig.class})
 public class DemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
-// 허용할 오리진(Origin) 설정
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
