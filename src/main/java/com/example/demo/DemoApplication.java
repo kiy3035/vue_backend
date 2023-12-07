@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @SpringBootApplication
-@CrossOrigin(origins = "http://localhost:8001")
+@CrossOrigin(origins = {"http://localhost:8001" , "https://web-frontvue-57lz2alptar5jk.sel4.cloudtype.app"})
 @Import({DefaultDatabaseConfig.class, FescoDatabaseConfig.class})
 public class DemoApplication {
 
