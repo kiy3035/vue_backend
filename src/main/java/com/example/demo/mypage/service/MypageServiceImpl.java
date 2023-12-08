@@ -1,12 +1,17 @@
 package com.example.demo.mypage.service;
 
-import java.util.List;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.Map;
-import java.util.ArrayList;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.mypage.dto.MypageDto;
 import com.example.demo.mypage.mapper.MypageMapper;
 
 @Service
@@ -18,9 +23,30 @@ public class MypageServiceImpl implements MypageService {
         this.MypageMapper = MypageMapper;
     }
 
-    public void updateUserInfo(Map<String, Object> userInfo) {
+    public void updateUserInfo(Map<String, Object> userInfo, MultipartFile imageFile) {
         try {
             if (!userInfo.isEmpty()) {
+
+                if (imageFile != null && !imageFile.isEmpty()) {
+
+                    // 프로젝트 내부의 상대 경로 설정
+                    String projectPath = System.getProperty("user.dir");
+                    String relativePath = "uploads";
+                    String uploadDirPath = projectPath + "/vue_front/src/assets/";
+
+                    // 파일 저장 경로 설정
+                    File uploadDir = new File(uploadDirPath);
+                    if (!uploadDir.exists()) {
+                        uploadDir.mkdirs();
+                    }
+
+                    String newFileName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
+
+                    imageFile.transferTo(new File(uploadDir, newFileName));
+                    userInfo.put("imagePath", uploadDir.toString() + "/" + newFileName);
+                }
+
+                userInfo.put("updDate", new Date()); // SYSDATE 추가
                 MypageMapper.updateUserInfo(userInfo);
             }
         } 
@@ -29,20 +55,10 @@ public class MypageServiceImpl implements MypageService {
         }
     }
     
-
-    // public String login(Map<String, Object> userInfo) {
-        
-    //     if (!userInfo.isEmpty()) {
-    //         Map<String, Object> result = MypageMapper.matchUserInfo(userInfo);
-    //         System.out.println("결과값: " + result);
-
-    //         if(result == null){
-    //             return null;
-    //         }
-    //         return (String) result.get("EMAIL");
-    //     }
-    //     return null;
-    // }
-
+   
+        public Map<String, Object> getUserImage(Map<String, Object> email) {
+            System.out.println("=============:" + MypageMapper.getUserImg(email));
+            return MypageMapper.getUserImg(email);
+        }
 
 }

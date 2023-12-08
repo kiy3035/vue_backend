@@ -6,18 +6,20 @@
     <!-- 유저정보 update -->
     <update id="updateUserInfo" parameterType="java.util.Map">
         UPDATE VUE_USERINFO
-           SET PW = #{password}
+           SET 
+            <if test="imagePath != null">
+              IMG_PATH = #{imagePath},
+            </if>
+               PW = #{password}
              , INPDATE = #{updDate}
          WHERE EMAIL = #{email}
     </update>
 
-    <!-- <select id="matchUserInfo" parameterType="HashMap" resultType="java.util.LinkedHashMap">
-        SELECT EMAIL
-             , PW
+    <select id="getUserImg" parameterType="HashMap" resultType="java.util.LinkedHashMap">
+        SELECT IMG_PATH
           FROM VUE_USERINFO
          WHERE EMAIL = #{email} 
-           AND PW = #{password}     
-    </select> -->
+    </select>
 
 
 </mapper>

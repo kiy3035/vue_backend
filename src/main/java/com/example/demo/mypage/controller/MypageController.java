@@ -1,27 +1,17 @@
 package com.example.demo.mypage.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.mypage.service.*;
-import java.util.Date;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.example.demo.mypage.service.MypageService;
 
 
 @RestController
@@ -30,26 +20,38 @@ public class MypageController {
     @Autowired
     private MypageService MypageService;
 
-    // 비밀번호 변경
+    // 유저정보 수정
     @PostMapping("/updateUserInfo")
-    public void singUp(@RequestBody Map<String, Object> data) {
+    public void UpdateUserInfo(@RequestPart("image") MultipartFile imageFile,
+                        @RequestParam("email") String email,
+                        @RequestParam("password") String password) {
         
-        data.put("updDate", new Date()); // SYSDATE 추가
+        System.out.println("Original Filename: " + imageFile.getOriginalFilename()); // 파일명
+        System.out.println("Size: " + imageFile.getSize() + " bytes"); // 사이즈
+        System.out.println("Content Type: " + imageFile.getContentType()); // 확장자
 
-        MypageService.updateUserInfo(data);
+        Map<String, Object> userInfo = new HashMap<>();
+        userInfo.put("email", email);
+        userInfo.put("password", password);
+        userInfo.put("imageFile", imageFile);
+        userInfo.put("imageFileName", imageFile.getOriginalFilename());
+
+        MypageService.updateUserInfo(userInfo, imageFile);
     }
 
-    // // 로그인한 사용자의 이메일 가져오기
-    // @GetMapping("/getuseremail")
-    // public ResponseEntity<String> getUserEmail(HttpSession session) {
 
-    //     String userEmail = (String) session.getAttribute("email");
+    // 유저 프사 들고오기
+    @GetMapping("/getUserImage")
+    public String GetUserImage(@RequestParam("email") String email) {
+        
+        System.out.println(email);
+        
+        Map<String, Object> userInfo = new HashMap<>();
+        userInfo.put("email", email);
 
-    //     if (userEmail != null) {
-    //         return new ResponseEntity<>(userEmail, HttpStatus.OK);
-    //     } else {
-    //         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-    //     }
-    // }
+        String imgPath = (String) MypageService.getUserImage(userInfo).get("IMG_PATH");
+
+        return imgPath;
+    }
     
 }
