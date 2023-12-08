@@ -32,7 +32,6 @@ dependencies {
 	implementation 'org.hibernate:hibernate-core:5.6.6.Final' // JPA
 
 
-
 	// 구글 드라이브 (보류)
 	// implementation 'com.google.api-client:google-api-client:1.32.1'
 	// implementation 'com.google.oauth-client:google-oauth-client-jetty:1.32.1'

@@ -1,12 +1,12 @@
 package com.example.demo.mypage.service;
 
-import java.util.List;
 import java.util.Map;
 
-import com.example.demo.mypage.dto.MypageDto;
+import org.springframework.web.multipart.MultipartFile;
+
 
 public interface MypageService {
-    void updateUserInfo(Map<String, Object> userInfo);
-    // String login(Map<String, Object> userInfo);
+    void updateUserInfo(Map<String, Object> userInfo, MultipartFile file);
+    Map<String, Object> getUserImage(Map<String, Object> data);
 
 }
