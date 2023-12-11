@@ -22,8 +22,8 @@
 
 //     // Dropbox 토큰
 //     private static final String ACCESS_TOKEN =
-// "sl.BqxSUN4jI3DdX2R9AqCEpKmqkds5-i6ihrYLd3huq-I_58Wfba3fDRbWEQ6hJ8EjmSwSDtxHthjgL7V4TEOXmerN39pWy0MZnMR5k_reKowLPweQTlCseeacbMp7pQfzSgJZlYMOM8k-atE";    
-    
+// "sl.Brj1h88V4EAqjYIUyyCqk-Up4fpkgzOnjtSk-oiPM92IegVEcR1St1Hw2EgI7j3AC-rWhZSJ_zxZT2eUptc28V-b_HAoVVUOXyEWoDva3EZreXe3NMYibO3Om5oiLI7P4-1ifl2RZNyO10g";    
+
 //     public String uploadFile(VideoDto videoDto) {
 //         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
 

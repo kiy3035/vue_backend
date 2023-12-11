@@ -10,14 +10,14 @@
                                   , PW
                                   , NICKNAME
                                   , INPDATE
-                                  , INP_USR
+                                  <!-- , INP_USR -->
                                 )
                         VALUES(
                                 #{email}
                               , #{password}
                               , #{nickname}
                               , #{inpDate}
-                              , #{inp_usr}
+                              <!-- , #{inp_usr} -->
                               )
     </insert>
 
