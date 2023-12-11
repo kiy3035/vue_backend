@@ -45,7 +45,7 @@ public class MypageController {
     public String GetUserImage(@RequestParam("email") String email) {
         
         System.out.println(email);
-        
+
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("email", email);
 
