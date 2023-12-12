@@ -35,6 +35,7 @@ import com.zaxxer.hikari.HikariDataSource;
                            , "com.example.demo.like.mapper" 
                            , "com.example.demo.comment.mapper" 
                            , "com.example.demo.community.mapper"
+                           , "com.example.demo.chat.mapper"
 }
                            , sqlSessionFactoryRef = "defaultSqlSessionFactory")
 @EnableJpaRepositories(

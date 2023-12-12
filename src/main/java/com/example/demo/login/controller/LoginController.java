@@ -22,7 +22,7 @@ import com.example.demo.login.service.LoginService;
 public class LoginController {
 
     @Autowired
-    private LoginService LoginService;
+    private LoginService loginService;
 
     // 회원가입
     @PostMapping("/signup")
@@ -30,7 +30,7 @@ public class LoginController {
 
         data.put("inpDate", new Date()); // SYSDATE 추가
 
-        String result = LoginService.inputUserInfo(data);
+        String result = loginService.inputUserInfo(data);
 
         return result;
     }
@@ -39,7 +39,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(@RequestBody Map<String, Object> data, HttpSession session) {
 
-        String result = LoginService.login(data);
+        String result = loginService.login(data);
         System.out.println("result ::::" + result);
 
         if (result != null) {
