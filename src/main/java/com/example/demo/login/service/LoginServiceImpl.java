@@ -9,17 +9,17 @@ import com.example.demo.login.mapper.LoginMapper;
 @Service
 public class LoginServiceImpl implements LoginService {
     
-    private final LoginMapper LoginMapper;
+    private final LoginMapper loginMapper;
     
     public LoginServiceImpl(LoginMapper LoginMapper) {
-        this.LoginMapper = LoginMapper;
+        this.loginMapper = LoginMapper;
     }
 
     public String inputUserInfo(Map<String, Object> userInfo) {
         try {
             if (!userInfo.isEmpty()) {
                 // 회원가입시 중복email 방지하는 로직 만들것(미완성)
-                LoginMapper.insertUserInfo(userInfo);
+                loginMapper.insertUserInfo(userInfo);
             }
             return null;
         } 
@@ -33,7 +33,7 @@ public class LoginServiceImpl implements LoginService {
     public String login(Map<String, Object> userInfo) {
         
         if (!userInfo.isEmpty()) {
-            Map<String, Object> result = LoginMapper.matchUserInfo(userInfo);
+            Map<String, Object> result = loginMapper.matchUserInfo(userInfo);
             System.out.println("결과값: " + result);
 
             if(result == null){
