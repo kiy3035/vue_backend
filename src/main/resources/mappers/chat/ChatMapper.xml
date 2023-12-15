@@ -1,16 +1,84 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.demo.login.mapper.LoginMapper">
+<mapper namespace="com.example.demo.chat.mapper.ChatMapper">
 
-
-    <select id="getFriendsListByEmail" parameterType="HashMap" resultType="java.util.ArrayList">
+    <!-- 친구목록 가져오기 -->
+    <select id="getFriendsList" resultType="java.util.HashMap">
         SELECT EMAIL
              , NICKNAME
              , IMG_PATH
           FROM VUE_USERINFO
-         WHERE EMAIL = #{email}
+         <!-- WHERE EMAIL = #{email} -->
     </select>
 
+
+    <!-- 채팅 insert -->
+    <insert id="insertMessage" parameterType="java.util.Map">
+        INSERT INTO VUE_CHAT (
+                                      CHATROOM_ID
+                                    , MY_ID
+                                    , OTHER_ID
+                                    , MESSAGE
+                                    , INP_DATE
+                          ) VALUES (
+                                      #{chatRoomId}
+                                    , #{myId}
+                                    , #{otherId}
+                                    , #{message}
+                                    , SYSDATE
+                          )
+    </insert>
+
+
+    <!-- 기존에 대화방 있는지 확인 -->
+    <select id="findChatRoomYN" parameterType="HashMap" resultType="int">
+        SELECT DISTINCT CHATROOM_ID
+          FROM VUE_CHAT
+         WHERE (MY_ID = #{myId} OR OTHER_ID = #{myId})
+           AND (OTHER_ID = #{otherId} OR MY_ID = #{otherId})
+    </select>
+
+
+    <!-- MaxID 구하기 -->
+    <select id="findMaxChatRoomID" parameterType="HashMap" resultType="int">
+        SELECT MAX(CHATROOM_ID)
+          FROM VUE_CHAT
+    </select>
+
+
+    <!-- 대화기록 들고오기 -->
+    <select id="findAllMessages" parameterType="HashMap" resultType="java.util.HashMap">
+        SELECT CHATROOM_ID
+             , MESSAGE
+             , MY_ID
+             , OTHER_ID
+          FROM VUE_CHAT
+         WHERE (MY_ID = #{myId} OR OTHER_ID = #{myId})
+           AND (OTHER_ID = #{otherId} OR MY_ID = #{otherId})
+    </select>
+
+
+    <!-- 마지막 대화 들고오기 -->
+    <select id="findLastMessage" parameterType="HashMap" resultType="java.util.HashMap">
+        WITH LatestMessages AS (
+              SELECT CHATROOM_ID
+                   , MESSAGE
+                   , INP_DATE
+                   , OTHER_ID
+                   , ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY INP_DATE DESC) AS rn
+                FROM VUE_CHAT
+               WHERE MY_ID = #{myId}
+        )
+        SELECT A.CHATROOM_ID
+             , A.MESSAGE
+             , A.INP_DATE
+             , A.OTHER_ID
+             , B.IMG_PATH
+         FROM LatestMessages A, VUE_USERINFO B
+        WHERE rn = 1
+          AND B.EMAIL = A.OTHER_ID
+     ORDER BY INP_DATE DESC
+    </select>
 
 </mapper>

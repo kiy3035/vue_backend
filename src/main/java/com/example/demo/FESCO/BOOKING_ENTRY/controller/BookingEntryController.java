@@ -22,6 +22,7 @@ public class BookingEntryController {
     @GetMapping("/{clssCd}")
     @ResponseBody
     public List<BookingEntryDto> searchData(@PathVariable String clssCd) {
-        return bookingEntryService.getDataDtoByClssCd(clssCd);
+        return null;
+        // return bookingEntryService.getDataDtoByClssCd(clssCd);
     }
 }

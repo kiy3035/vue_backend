@@ -33,7 +33,6 @@ public class MypageServiceImpl implements MypageService {
                     // 프로젝트 내부의 상대 경로 설정(vue_front에 저장되도록 함)
                     String projectPath = System.getProperty("user.dir");
                     System.out.println("projectPath:" + projectPath);
-                    String relativePath = "uploads";
                     String uploadDirPath = projectPath + "/vue_front/src/assets/";
 
                     // 파일 저장 경로 설정
