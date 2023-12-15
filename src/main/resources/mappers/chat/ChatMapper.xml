@@ -53,9 +53,11 @@
              , MESSAGE
              , MY_ID
              , OTHER_ID
+             , INP_DATE
           FROM VUE_CHAT
          WHERE (MY_ID = #{myId} OR OTHER_ID = #{myId})
            AND (OTHER_ID = #{otherId} OR MY_ID = #{otherId})
+      ORDER BY INP_DATE ASC
     </select>
 
 
@@ -65,19 +67,21 @@
               SELECT CHATROOM_ID
                    , MESSAGE
                    , INP_DATE
+                   , MY_ID
                    , OTHER_ID
                    , ROW_NUMBER() OVER (PARTITION BY CHATROOM_ID ORDER BY INP_DATE DESC) AS rn
                 FROM VUE_CHAT
-               WHERE MY_ID = #{myId}
+               WHERE ( MY_ID = #{myId} OR OTHER_ID = #{myId} )
         )
         SELECT A.CHATROOM_ID
              , A.MESSAGE
              , A.INP_DATE
+             , A.MY_ID
              , A.OTHER_ID
              , B.IMG_PATH
-         FROM LatestMessages A, VUE_USERINFO B
+         FROM LatestMessages A
+         JOIN VUE_USERINFO B ON B.EMAIL = CASE WHEN A.MY_ID = #{myId} THEN A.OTHER_ID ELSE A.MY_ID END
         WHERE rn = 1
-          AND B.EMAIL = A.OTHER_ID
      ORDER BY INP_DATE DESC
     </select>
 
