@@ -16,12 +16,19 @@ public class ChatServiceImpl implements ChatService {
         this.chatMapper = ChatMapper;
     }
 
-    public List<Map<String, Object>> getFriendsList(Map<String, Object> userInfo) {
+    // 친구목록 들고오기
+    public List<Map<String, Object>> getFriendsList() {
+        return chatMapper.getFriendsList();
+    }
+
+
+    // 모든 메세지 다 들고오기
+    public List<Map<String, Object>> getAllMessages(Map<String, Object> data) {
         try {
-            if (!userInfo.isEmpty()) {
-                chatMapper.getFriendsListByEmail(userInfo);
+            if (!data.isEmpty()) {
+                return chatMapper.findAllMessages(data);
             }
-            return null;
+                return null;
         } 
         catch (Exception e) {
             e.printStackTrace();
@@ -30,5 +37,29 @@ public class ChatServiceImpl implements ChatService {
     }
 
 
+    // 젤 최근 메세지 들고오기
+    public List<Map<String, Object>> getLastMessage(Map<String, Object> data) {
+        try {
+            if (!data.isEmpty()) {
+                List<Map<String, Object>> newData = chatMapper.findLastMessage(data);
+
+                for(int i = 0; i < newData.size(); i++){
+
+                    String value = (String) newData.get(i).get("IMG_PATH");
+            
+                    // assets/ 뒷부분만 추출해서 화면에 넘겨줘야함
+                    String extractedPath = value.substring(value.indexOf("assets/") + "assets/".length());
+
+                    newData.get(i).put("IMG_PATH", extractedPath);
+                }
+                return newData;
+            }
+                return null;
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }

@@ -19,6 +19,7 @@ public class LoginServiceImpl implements LoginService {
         try {
             if (!userInfo.isEmpty()) {
                 // 회원가입시 중복email 방지하는 로직 만들것(미완성)
+                userInfo.put("imgPath", "C://kiy3035/vue/vue_front/src/assets/ad512187-963c-4987-a5dc-f2cbf29d9332_기본프사.png");
                 loginMapper.insertUserInfo(userInfo);
             }
             return null;

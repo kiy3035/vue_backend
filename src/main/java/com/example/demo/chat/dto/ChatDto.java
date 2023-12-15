@@ -1,21 +1,25 @@
 package com.example.demo.chat.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Builder
+@Getter 
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChatDto {
+  
+    private String myId;
 
-    @Getter @Setter
-    private String email;
+    private String otherId;
 
-    @Getter @Setter
-    private String password;
-
-    @Getter @Setter
-    private String inp_usr;
-
-    @Getter @Setter
-    private String nickname;
-
+    private Long chatRoomId;
     
+    private String message;
+
+        
 }
