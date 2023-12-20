@@ -18,7 +18,7 @@ import com.example.demo.login.service.LoginService;
 
 
 @RestController
-// @CrossOrigin(origins = {"http://localhost:8001", "https://web-frontvue-57lz2alptar5jk.sel4.cloudtype.app"}) // 프론트엔드 포트
+@CrossOrigin(origins = {"http://localhost:8001", "https://web-frontvue-57lz2alptar5jk.sel4.cloudtype.app" }) // 프론트엔드 포트
 public class LoginController {
 
     @Autowired

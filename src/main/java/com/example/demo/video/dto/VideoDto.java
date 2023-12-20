@@ -5,46 +5,37 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 public class VideoDto {
 
-    @Getter @Setter
     private String title;
 
-    @Getter @Setter
     private String content;
 
-    @Getter @Setter
     private String user_email;
 
-    @Getter @Setter
     private String user_name;
 
-    @Getter @Setter
     private String user_nickname;
 
-    @Getter @Setter
     private String path;
 
-    @Getter @Setter
     private String type;
 
-    @Getter @Setter
     private String video_id;
 
-    @Getter @Setter
     private String inp_dt;
 
-    @Getter @Setter
     private int like_count;
 
-    @Getter @Setter
     private int comment_count;
 
-    @Getter @Setter
     private MultipartFile videoFile;
 
-    @Getter @Setter
     private String video_url;
+
+    private String category;
 
     public void setFilename(String videoId) {
     }

@@ -29,7 +29,7 @@ public class VideoServiceImpl implements VideoService {
                 String extension = originalFilename.substring(originalFilename.lastIndexOf('.'));
                 String videoId = videoDto.getVideo_id();
 
-                videoDto.setFilename(videoId+extension); // 파일 이름을 videoId로 설정
+                videoDto.setFilename(videoId + extension); // 파일 이름을 videoId로 설정
 
                 // 프로젝트 내부의 상대 경로 설정
                 String projectPath = System.getProperty("user.dir");
@@ -61,6 +61,7 @@ public class VideoServiceImpl implements VideoService {
     }
     @Override
     public List<VideoDto> getAllVideos() {
+        System.out.println(videoMapper.getAllVideos());
         return videoMapper.getAllVideos();
     }
 }

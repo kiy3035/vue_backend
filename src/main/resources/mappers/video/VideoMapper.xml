@@ -15,6 +15,7 @@
                             , INP_DT
                             , LIKE_COUNT
                             , COMMENT_COUNT
+                            , CATEGORY
                           )
                   VALUES(
                           #{title}
@@ -26,6 +27,7 @@
                         , #{inp_dt}
                         , 0
                         , 0
+                        , #{category}
         )
     </insert>
 
@@ -38,6 +40,7 @@
              , INP_DT
              , LIKE_COUNT
              , COMMENT_COUNT
+             , CATEGORY
           FROM VUE_VIDEO
          WHERE TITLE = #{title} 
            AND TYPE = #{type}     
