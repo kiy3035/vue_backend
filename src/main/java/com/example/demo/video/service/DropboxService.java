@@ -22,8 +22,8 @@ public class DropboxService {
 
     // Dropbox 토큰
     private static final String ACCESS_TOKEN =
-    "sl.BsGYFD0nO9b0hQ7BgQNhXFRqTqnRyrXMy0Sc-L5p0YmPbm1fN5tGcwLQNP2ny0QkcAR8nsnZ33mt1wZUDsScDalVwPDDebXs-Y88wu4dEULR7KepclT4xjCM_vg0b0YAOvzmS11rSsRzm1M";    
-    public String uploadFile(VideoDto videoDto) {
+    "sl.BsEDJT9Jb0cN8vc4atCzGy2zzCYM8FOtOekM7-jIGBLuFSyAFYKOcTrvvMDGAbEAof96SKXgv7ol4l22Cv8XQ5xOg80CRAJQQoKNXOtLXysXPUQLn2nZCbWHgvaSpLgC4C5379CHPw7bX94";
+        public String uploadFile(VideoDto videoDto) {
         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
 
             // Dropbox 연동을 위한 설정
