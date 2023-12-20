@@ -51,4 +51,8 @@ public class CommunityServiceImpl implements CommunityService {
     public List<CommunityDto> getAlldata() {
         return CommunityMapper.getAlldata();
     }
+    @Override
+    public List<CommunityDto> getNickname(String email) {
+        return CommunityMapper.getNickname(email);
+    }
 }
