@@ -22,8 +22,7 @@ public class DropboxService {
 
     // Dropbox 토큰
     private static final String ACCESS_TOKEN =
-    "sl.BsG1gQ-T_7HX7jESorQMIaungOZkCkxoLQ0_eTlRqEevoHixWh41PThNR578hrLHHRZItM9PWM-I3Q-rxpqT-df8gpmYfkZ6g50bCK1aoGoK5RXGVZ8Me-qaH92o3AMip0qHIDBYlxQRw5Q";
-    
+    "sl.BsGs3n0jjsYXPnPTr8RhMZD5F7Es9qSW2qFVhGF25CT-Vs81IL7sLGHlEMNw0R4gK8ih3NBJcfWsEHY2B-5u3XTetHfUBctRzDbx9ZExG-iSyJWukywpSHwbZ4KENYzcLNBXGrysSeBeH2o";    
     public String uploadFile(VideoDto videoDto) {
         try (InputStream inputStream = videoDto.getVideoFile().getInputStream()) {
 
